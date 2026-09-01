@@ -14,10 +14,10 @@ description: Срок на изучение - 4 рабочих дня
 4. <mark style="background-color:green;">Перегрузка и переопределение: в чем разница, правила, связывание (compile-time vs runtime).</mark>
 5. <mark style="background-color:green;">Интерфейсы, методы интерфейсов (</mark><mark style="background-color:green;">`default`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`static`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`private`</mark><mark style="background-color:green;">).</mark>
 6. <mark style="background-color:green;">Сколько интерфейсов может реализовывать класс? Может ли интерфейс наследовать другой интерфейс?</mark>
-7. Enum: особенности, когда использовать, `values()`, `valueOf()`, перегрузка методов, использование в `switch`.
-8. Поля в интерфейсе: `public static final` по умолчанию. Можно ли переопределить? Как вызвать статический метод?
-9. Абстрактный класс: может ли иметь конструктор? Может ли быть `final`? Может ли содержать `final` методы?
-10. Когда использовать интерфейс, а когда абстрактный класс?
+7. Поля в интерфейсе: `public static final` по умолчанию. Можно ли переопределить? Как вызвать статический метод?
+8. Абстрактный класс: может ли иметь конструктор? Может ли быть `final`? Может ли содержать `final` методы?
+9. Когда использовать интерфейс, а когда абстрактный класс?
+10. Enum: особенности, когда использовать, `values()`, `valueOf()`, перегрузка методов, использование в `switch`.
 11. `String`, `StringBuilder` и `StringBuffer`: особенности, производительность, потокобезопасность.
 12. Пул строк и строковые литералы: `==` и `.equals()`, `String.intern()`.
 13. Иерархия `Throwable`: `Error` и `Exception`, `RuntimeException` и checked-исключения.
@@ -114,6 +114,6 @@ _На данном этапе реализуйте классы с метода�
 [peregruzka-i-pereopredelenie-metodov.md](peregruzka-i-pereopredelenie-metodov.md)
 {% endcontent-ref %}
 
-{% content-ref url="interfeisy.md" %}
-[interfeisy.md](interfeisy.md)
+{% content-ref url="interfeisy-i-abstraktnye-klassy.md" %}
+[interfeisy-i-abstraktnye-klassy.md](interfeisy-i-abstraktnye-klassy.md)
 {% endcontent-ref %}

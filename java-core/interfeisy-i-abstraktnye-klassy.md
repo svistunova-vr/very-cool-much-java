@@ -1,4 +1,4 @@
-# Интерфейсы
+# Интерфейсы и абстрактные классы
 
 > **Интерфейс (`interface`)** — это контракт: он описывает, **какие возможности должен предоставлять объект**, но обычно не определяет, как именно они реализованы.
 
@@ -520,6 +520,43 @@ public static final String name = ...;
 
 ***
 
+### **Можно ли переопределить поле интерфейса?**
+
+Нет. **Поля вообще не участвуют в переопределении так, как методы.**
+
+Например:
+
+{% code overflow="wrap" %}
+```java
+interface Config {
+    int TIMEOUT = 10;
+}
+```
+{% endcode %}
+
+Класс может объявить своё поле с таким же именем:
+
+{% code overflow="wrap" %}
+```java
+class AppConfig implements Config {
+    static int TIMEOUT = 20;
+}
+```
+{% endcode %}
+
+Но это **другое поле**, а не переопределение `Config.TIMEOUT`.
+
+{% code overflow="wrap" %}
+```java
+Config.TIMEOUT;    // 10
+AppConfig.TIMEOUT; // 20
+```
+{% endcode %}
+
+Поле интерфейса `Config.TIMEOUT` изменить нельзя, потому что оно неявно `final`. Поле `AppConfig.TIMEOUT` менять можно, потому что оно уже в `class`, а не `interface` ⇒ нет "неявных" ключевых слов ⇒ чтобы поле было `final`, надо явно написать `final`.
+
+***
+
 ## `interface extends`, класс `implements`
 
 Класс наследует класс:
@@ -574,6 +611,119 @@ abstract class Notification {
 
 * `class` может `extends` только один класс
 * `class` может `implements` несколько интерфейсов
+
+***
+
+**Интерфейс** обычно подходит, когда мы описываем отдельную **возможность** или контракт, которую могут поддерживать совершенно разные классы:
+
+{% code overflow="wrap" %}
+```java
+interface Printable {
+    void print();
+}
+
+class Invoice implements Printable { ... }
+class Report implements Printable { ... }
+class Ticket implements Printable { ... }
+```
+{% endcode %}
+
+`Invoice`, `Report` и `Ticket` не обязаны иметь общего родителя или общие поля. Их объединяет только возможность `print()`.
+
+**Абстрактный класс** обычно подходит, когда классы действительно являются разновидностями одной сущности и им нужны **общее состояние и/или общая реализация**.
+
+{% code overflow="wrap" %}
+```java
+abstract class Notification {
+
+    private final String text;
+    private final LocalDateTime createdAt;
+
+    public Notification(String text) {
+        this.text = text;
+        this.createdAt = LocalDateTime.now();
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public abstract void send();
+}
+```
+{% endcode %}
+
+`EmailNotification` и `WebsiteNotification` — разные виды `Notification`, у которых есть общие данные и поведение.
+
+Наличие общего поведения по умолчанию не означает, что обязательно нужен абстрактный класс — у интерфейсов есть `default` методы, через которые его можно реализовать. Главный вопрос скорее в том, нужна ли объектам **общая базовая сущность и состояние**. Если да, лучше выбрать `abstract class`, но чаще всего достаточно `interface`.
+
+***
+
+### Особенности абстрактного класса
+
+#### Может ли абстрактный класс иметь конструктор?
+
+Да, например:
+
+{% code overflow="wrap" %}
+```java
+abstract class Notification {
+
+    private final String text;
+
+    public Notification(String text) {
+        this.text = text;
+    }
+}
+```
+{% endcode %}
+
+Просто в коде написать `new Notification(...)` нельзя, если класс `abstract`, но можно использовать его внутри конструктора наследника:
+
+{% code overflow="wrap" %}
+```java
+class EmailNotification extends Notification {
+
+    public EmailNotification(String text) {
+        super(text); // вызвали конструктор родителя
+    }
+}
+```
+{% endcode %}
+
+***
+
+#### Может ли абстрактный класс быть `final`?
+
+Нет, так нельзя.&#x20;
+
+* `abstract` означает, что класс предполагает создание наследника
+* `final` означает, что наследоваться от класса нельзя.
+
+Они противоречат друг другу.
+
+***
+
+#### Может ли абстрактный класс содержать `final` методы?
+
+Да, например:
+
+{% code overflow="wrap" %}
+```java
+abstract class Notification {
+
+    public final void validate() {
+        System.out.println("Проверка");
+    }
+
+    public abstract void send();
+}
+```
+{% endcode %}
+
+Наследник обязан реализовать `send()`, но не сможет переопределить `validate()`.
+
+`abstract` метод не может одновременно быть `final`: `abstract` требует реализации в наследнике, а `final` запрещает её переопределять.
 
 ***
 

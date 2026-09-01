@@ -6,4 +6,4 @@
   * [Ключевое слово static](java-core/klyuchevoe-slovo-static.md)
   * [ООП](java-core/oop.md)
   * [Перегрузка и переопределение методов](java-core/peregruzka-i-pereopredelenie-metodov.md)
-  * [Интерфейсы](java-core/interfeisy.md)
+  * [Интерфейсы и абстрактные классы](java-core/interfeisy-i-abstraktnye-klassy.md)
