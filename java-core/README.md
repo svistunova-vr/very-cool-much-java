@@ -14,9 +14,9 @@ description: Срок на изучение - 4 рабочих дня
 4. <mark style="background-color:green;">Перегрузка и переопределение: в чем разница, правила, связывание (compile-time vs runtime).</mark>
 5. <mark style="background-color:green;">Интерфейсы, методы интерфейсов (</mark><mark style="background-color:green;">`default`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`static`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`private`</mark><mark style="background-color:green;">).</mark>
 6. <mark style="background-color:green;">Сколько интерфейсов может реализовывать класс? Может ли интерфейс наследовать другой интерфейс?</mark>
-7. Поля в интерфейсе: `public static final` по умолчанию. Можно ли переопределить? Как вызвать статический метод?
-8. Абстрактный класс: может ли иметь конструктор? Может ли быть `final`? Может ли содержать `final` методы?
-9. Когда использовать интерфейс, а когда абстрактный класс?
+7. <mark style="background-color:green;">Поля в интерфейсе:</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`public static final`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">по умолчанию. Можно ли переопределить? Как вызвать статический метод?</mark>
+8. <mark style="background-color:green;">Абстрактный класс: может ли иметь конструктор? Может ли быть</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`final`</mark><mark style="background-color:green;">? Может ли содержать</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`final`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">методы?</mark>
+9. <mark style="background-color:green;">Когда использовать интерфейс, а когда абстрактный класс?</mark>
 10. Enum: особенности, когда использовать, `values()`, `valueOf()`, перегрузка методов, использование в `switch`.
 11. `String`, `StringBuilder` и `StringBuffer`: особенности, производительность, потокобезопасность.
 12. Пул строк и строковые литералы: `==` и `.equals()`, `String.intern()`.
