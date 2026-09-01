@@ -9,7 +9,7 @@ description: Срок на изучение - 4 рабочих дня
 <summary>Вопросы</summary>
 
 1. <mark style="background-color:green;">Модификаторы доступов.</mark>
-2. Ключевое слово `static`.
+2. <mark style="background-color:green;">Ключевое слово</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`static`</mark><mark style="background-color:green;">.</mark>
 3. <mark style="background-color:green;">Что такое ООП? Четыре основных принципа (инкапсуляция, наследование, полиморфизм, абстракция) с примерами.</mark>
 4. <mark style="background-color:green;">Перегрузка и переопределение: в чем разница, правила, связывание (compile-time vs runtime).</mark>
 5. Интерфейсы, методы интерфейсов (`default`, `static`, `private`).
@@ -100,6 +100,10 @@ _На данном этапе реализуйте классы с метода�
 
 {% content-ref url="modifikatory-dostupa.md" %}
 [modifikatory-dostupa.md](modifikatory-dostupa.md)
+{% endcontent-ref %}
+
+{% content-ref url="klyuchevoe-slovo-static.md" %}
+[klyuchevoe-slovo-static.md](klyuchevoe-slovo-static.md)
 {% endcontent-ref %}
 
 {% content-ref url="oop.md" %}
