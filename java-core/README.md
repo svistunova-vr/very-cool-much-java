@@ -12,8 +12,8 @@ description: Срок на изучение - 4 рабочих дня
 2. <mark style="background-color:green;">Ключевое слово</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`static`</mark><mark style="background-color:green;">.</mark>
 3. <mark style="background-color:green;">Что такое ООП? Четыре основных принципа (инкапсуляция, наследование, полиморфизм, абстракция) с примерами.</mark>
 4. <mark style="background-color:green;">Перегрузка и переопределение: в чем разница, правила, связывание (compile-time vs runtime).</mark>
-5. Интерфейсы, методы интерфейсов (`default`, `static`, `private`).
-6. Сколько интерфейсов может реализовывать класс? Может ли интерфейс наследовать другой интерфейс?
+5. <mark style="background-color:green;">Интерфейсы, методы интерфейсов (</mark><mark style="background-color:green;">`default`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`static`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`private`</mark><mark style="background-color:green;">).</mark>
+6. <mark style="background-color:green;">Сколько интерфейсов может реализовывать класс? Может ли интерфейс наследовать другой интерфейс?</mark>
 7. Enum: особенности, когда использовать, `values()`, `valueOf()`, перегрузка методов, использование в `switch`.
 8. Поля в интерфейсе: `public static final` по умолчанию. Можно ли переопределить? Как вызвать статический метод?
 9. Абстрактный класс: может ли иметь конструктор? Может ли быть `final`? Может ли содержать `final` методы?
@@ -112,4 +112,8 @@ _На данном этапе реализуйте классы с метода�
 
 {% content-ref url="peregruzka-i-pereopredelenie-metodov.md" %}
 [peregruzka-i-pereopredelenie-metodov.md](peregruzka-i-pereopredelenie-metodov.md)
+{% endcontent-ref %}
+
+{% content-ref url="interfeisy.md" %}
+[interfeisy.md](interfeisy.md)
 {% endcontent-ref %}
