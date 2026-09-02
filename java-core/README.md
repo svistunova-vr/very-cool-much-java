@@ -17,16 +17,16 @@ description: Срок на изучение - 4 рабочих дня
 7. <mark style="background-color:green;">Поля в интерфейсе:</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`public static final`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">по умолчанию. Можно ли переопределить? Как вызвать статический метод?</mark>
 8. <mark style="background-color:green;">Абстрактный класс: может ли иметь конструктор? Может ли быть</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`final`</mark><mark style="background-color:green;">? Может ли содержать</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`final`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">методы?</mark>
 9. <mark style="background-color:green;">Когда использовать интерфейс, а когда абстрактный класс?</mark>
-10. Enum: особенности, когда использовать, `values()`, `valueOf()`, перегрузка методов, использование в `switch`.
-11. `String`, `StringBuilder` и `StringBuffer`: особенности, производительность, потокобезопасность.
-12. Пул строк и строковые литералы: `==` и `.equals()`, `String.intern()`.
+10. <mark style="background-color:green;">Enum: особенности, когда использовать,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`values()`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`valueOf()`</mark><mark style="background-color:green;">, перегрузка методов, использование в</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`switch`</mark><mark style="background-color:green;">.</mark>
+11. <mark style="background-color:green;">`String`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`StringBuilder`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">и</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`StringBuffer`</mark><mark style="background-color:green;">: особенности, производительность, потокобезопасность.</mark>
+12. <mark style="background-color:green;">Пул строк и строковые литералы:</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`==`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">и</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`.equals()`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`String.intern()`</mark><mark style="background-color:green;">.</mark>
 13. Иерархия `Throwable`: `Error` и `Exception`, `RuntimeException` и checked-исключения.
 14. `try`/`catch`/`finally`: что выполняется, если в `try` `return`, `throw`, `System.exit()`?
 15. try-with-resources: требования к ресурсам (`AutoCloseable`), порядок закрытия.
 16. Обработка нескольких исключений в одном `catch` (multi-catch), порядок catch-блоков (от конкретного к общему).
 17. `throws` и `throw`. Что происходит, если unchecked exception не перехвачен?
-18. Создание кастомного исключения: наследование от Exception (checked) или RuntimeException (unchecked).
-19. Что такое Maven? Зачем он нужен?
+18. Создание кастомного исключения: наследование от `Exception` (checked) или RuntimeException (unchecked).
+19. Что такое `Maven`? Зачем он нужен?
 20. Жизненный цикл Maven (`clean`, `default`, `site`). Фазы (`compile`, `test`, `package`, `install`). Теги (`groupId`, `artifactId`, `version`, `name`, `description`, `properties`, `dependencies`, `build`, `profiles`).
 21. Что такое SOLID? Расшифровка и объяснение каждого принципа.
 22. Что такое паттерн проектирования? Классификация (порождающие, структурные, поведенческие).
@@ -116,4 +116,12 @@ _На данном этапе реализуйте классы с метода�
 
 {% content-ref url="interfeisy-i-abstraktnye-klassy.md" %}
 [interfeisy-i-abstraktnye-klassy.md](interfeisy-i-abstraktnye-klassy.md)
+{% endcontent-ref %}
+
+{% content-ref url="enum.md" %}
+[enum.md](enum.md)
+{% endcontent-ref %}
+
+{% content-ref url="string.md" %}
+[string.md](string.md)
 {% endcontent-ref %}

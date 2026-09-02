@@ -7,3 +7,5 @@
   * [ООП](java-core/oop.md)
   * [Перегрузка и переопределение методов](java-core/peregruzka-i-pereopredelenie-metodov.md)
   * [Интерфейсы и абстрактные классы](java-core/interfeisy-i-abstraktnye-klassy.md)
+  * [enum](java-core/enum.md)
+  * [String](java-core/string.md)
