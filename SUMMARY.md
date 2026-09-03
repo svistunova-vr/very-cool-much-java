@@ -11,3 +11,4 @@
   * [String](java-core/string.md)
   * [Исключения](java-core/isklyucheniya.md)
   * [Maven](java-core/maven.md)
+  * [SOLID](java-core/solid.md)

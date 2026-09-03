@@ -28,7 +28,7 @@ description: Срок на изучение - 4 рабочих дня
 18. <mark style="background-color:green;">Создание кастомного исключения: наследование от</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Exception`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">(checked) или</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`RuntimeException`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">(unchecked).</mark>
 19. <mark style="background-color:green;">Что такое</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Maven`</mark><mark style="background-color:green;">? Зачем он нужен?</mark>
 20. <mark style="background-color:green;">Жизненный цикл Maven (</mark><mark style="background-color:green;">`clean`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`default`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`site`</mark><mark style="background-color:green;">). Фазы (</mark><mark style="background-color:green;">`compile`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`test`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`package`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`install`</mark><mark style="background-color:green;">). Теги (</mark><mark style="background-color:green;">`groupId`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`artifactId`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`version`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`name`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`description`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`properties`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`dependencies`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`build`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`profiles`</mark><mark style="background-color:green;">).</mark>
-21. Что такое SOLID? Расшифровка и объяснение каждого принципа.
+21. <mark style="background-color:green;">Что такое SOLID? Расшифровка и объяснение каждого принципа.</mark>
 22. Что такое паттерн проектирования? Классификация (порождающие, структурные, поведенческие).
 23. Паттерн Builder: проблема (множество параметров, особенно опциональных), fluent interface, пример.
 24. Паттерн Фабрика (Simple Factory / Factory Method): проблема (зависимость от конкретных реализаций), пример.
@@ -128,4 +128,12 @@ _На данном этапе реализуйте классы с метода�
 
 {% content-ref url="isklyucheniya.md" %}
 [isklyucheniya.md](isklyucheniya.md)
+{% endcontent-ref %}
+
+{% content-ref url="maven.md" %}
+[maven.md](maven.md)
+{% endcontent-ref %}
+
+{% content-ref url="solid.md" %}
+[solid.md](solid.md)
 {% endcontent-ref %}

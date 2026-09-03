@@ -1026,3 +1026,213 @@ catch (InsufficientFundsException e) {
     ...
 }
 ```
+
+***
+
+{% hint style="success" icon="star" %}
+Что будет выведено?
+
+```java
+public class Main {
+    public static void main(String[] args) throws Exception {
+        throwException();
+    }
+
+    static void throwException() throws Exception {
+        try {
+            throw new IOException();
+        } catch (IOException ex) {
+            System.err.println("IOException");
+            throw new IOException();
+        } catch (Exception ex) {
+            System.err.println("Exception");
+            throw new IOException();
+        } finally {
+            System.err.println("Finally");
+            throw new Exception();
+        }
+    }
+}
+```
+{% endhint %}
+
+<details>
+
+<summary>Решение</summary>
+
+Ответ:
+
+```
+IOException
+Finally
+// stack trace Exception
+```
+
+По шагам:
+
+```java
+try {
+    throw new IOException();
+}
+```
+
+Идем в первый подходящий `catch`:
+
+```java
+catch (IOException ex) {
+    System.err.println("IOException");
+    throw new IOException();
+}
+```
+
+Получаем `IOException`.
+
+Второй `catch` (`catch (Exception ex)`) уже **не выполняется**. Для исключения из `try` выбирается **только один первый подходящий** `catch`, и остальные `catch` этого же `try` уже не рассматриваются. Даже если внутри него `catch` сделать `throw`, новое исключение **не передается следующему `catch`**. Оно выходит наружу из всей конструкции `try-catch` (перед этим выполняется `finally`).
+
+Далее независимо от нового `throw new IOException()` выполняется `finally`, получаем `Finally`.
+
+`finally` сам бросает `new Exception()`, поэтому исключение `IOException`, брошенное из `catch`, **теряется**, а наружу выходит именно `Exception` из `finally`.
+
+</details>
+
+{% hint style="success" icon="star" %}
+Что будет выведено?
+
+{% code overflow="wrap" lineNumbers="true" %}
+```java
+class Program {
+    
+    public static void main(String[] args) {
+        try {
+            try {
+                throw new Exception("a");
+            } finally {
+                if (true) {
+                    throw new IOException("b");
+                }
+                System.out.println("c");
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println("d");
+            System.out.println(e.getMessage());
+        }
+    }
+}
+```
+{% endcode %}
+{% endhint %}
+
+<details>
+
+<summary>Решение</summary>
+
+Ответ:
+
+```
+b
+```
+
+По шагам:
+
+1. В самом внутреннем `try` (5-6 строка) выбрасывается:
+
+```java
+throw new Exception("a");
+```
+
+2. Перед передачей этого исключения наружу **обязательно выполняется `finally`**.
+3. В `finally` выполняется:
+
+```java
+throw new IOException("b");
+```
+
+Новое исключение из `finally` **затирает исходное `Exception("a")`**.
+
+4. До:
+
+```java
+System.out.println("c");
+```
+
+выполнение не доходит, потому что кинули `new IOException("b")`, и оставшаяся часть блока кода пропускается.
+
+5. Наружу выходит именно `IOException("b")`, поэтому срабатывает:
+
+```java
+catch (IOException e) {
+    System.out.println(e.getMessage());
+}
+```
+
+и выводится:
+
+```
+b
+```
+
+До второго `catch (Exception e)` выполнение уже не дойдёт, потому что в первой ветке его уже перехватили и обработали.
+
+</details>
+
+{% hint style="success" icon="star" %}
+Что вернет метод?
+
+{% code overflow="wrap" lineNumbers="true" %}
+```java
+public static int test() {
+    try {
+      int g = 3 / 1;
+      return 1;
+    } catch (ArithmeticException ae) {
+      return 2;
+    } finally {
+      return 3;
+    }
+}
+```
+{% endcode %}
+{% endhint %}
+
+<details>
+
+<summary>Решение</summary>
+
+Ответ:
+
+```
+3
+```
+
+По шагам:
+
+```java
+try {
+    int g = 3 / 1;
+    return 1;
+}
+```
+
+Исключения нет, `try` готов вернуть `1`.
+
+Но перед выходом из метода выполняется `finally`:
+
+```java
+finally {
+    return 3;
+}
+```
+
+`return 3` из `finally` **затирает  `return 1` из `try`**.
+
+Поэтому итог:
+
+```java
+test() // 3
+```
+
+`catch` вообще не выполняется, потому что `3 / 1` не вызывает `ArithmeticException` (исключение было бы, если бы делили на `0`).
+
+</details>
