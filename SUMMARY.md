@@ -9,3 +9,4 @@
   * [Интерфейсы и абстрактные классы](java-core/interfeisy-i-abstraktnye-klassy.md)
   * [enum](java-core/enum.md)
   * [String](java-core/string.md)
+  * [Исключения](java-core/isklyucheniya.md)
