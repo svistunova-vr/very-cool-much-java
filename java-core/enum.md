@@ -256,8 +256,8 @@ enum DeliveryType {
 Теперь:
 
 ```java
-DeliveryType.COURIER.calculatePrice(2); // 1000
-DeliveryType.PICKUP.calculatePrice(2);  // 200
+DeliveryType.EXPRESS.calculatePrice(2); // 1000
+DeliveryType.REGULAR.calculatePrice(2);  // 200
 ```
 
 То есть конкретные значения `enum` могут переопределять методы.
