@@ -13,4 +13,5 @@
   * [Maven](java-core/maven.md)
   * [SOLID](java-core/solid.md)
   * [Паттерны проектирования](java-core/patterny-proektirovaniya.md)
+  * [Ввод, вывод, логирование](java-core/vvod-vyvod-logirovanie.md)
 * [Collections, Generics и функциональное программирование](collections-generics-i-funkcionalnoe-programmirovanie.md)
