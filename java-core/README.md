@@ -141,3 +141,7 @@ _На данном этапе реализуйте классы с метода�
 {% content-ref url="patterny-proektirovaniya.md" %}
 [patterny-proektirovaniya.md](patterny-proektirovaniya.md)
 {% endcontent-ref %}
+
+{% content-ref url="vvod-vyvod-logirovanie.md" %}
+[vvod-vyvod-logirovanie.md](vvod-vyvod-logirovanie.md)
+{% endcontent-ref %}
