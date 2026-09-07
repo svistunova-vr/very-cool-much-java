@@ -32,3 +32,658 @@ User user = new User("Anna", 20);
 дополнительный Builder будет лишним — код и так понятен без него.
 
 ***
+
+## Классификация паттернов
+
+Паттерны делят на три основные группы в зависимости от того, **какую задачу они помогают решить**: порождающие, структурные и поведенческие.
+
+### Порождающие — как создавать объекты?
+
+Например, нужно удобно заполнить многочисленные параметры заказа. Или выбрать, какой объект создать для отправки уведомления: который отправляет по email или на сайте.
+
+Порождающие паттерны помогают организовать создание объектов: собрать необходимые параметры, выбрать конкретный класс или ограничить количество экземпляров.
+
+К этой группе относятся **Builder**, **Factory Method** и **Singleton** — их разбор ниже.
+
+### Структурные — как связать существующие части программы?
+
+Представим, что мы подключили библиотеку для отправки email. Она умеет делать то, что нам нужно, но ее методы отличаются от нашего существующего интерфейса для отправки уведомлений через сайт и Telegram. Можно написать отдельный класс-«переходник»: приложение будет обращаться к нему через уже существующий интерфейс (не придется переписывать уже существующую логику), а переходник будет вызывать нужные методы библиотеки.
+
+Примеры структурных паттернов — **Adapter** и **Facade**.
+
+### Поведенческие — как распределять действия между объектами?
+
+Представим, что стоимость обычной и экспресс-доставки рассчитывается по разным правилам. Можно вынести эти правила в отдельные классы и в зависимости от типа доставки, который выбрал клиент, использовать для расчета нужный класс. Основному коду оформления заказа тогда не придётся знать все варианты расчёта стоимости.
+
+Здесь нас интересует **поведение объектов**: кто выполняет действие, какой способ выполнения выбирается, как объекты передают работу друг другу.
+
+Примеры поведенческих паттернов — **Strategy** и **Observer**.
+
+***
+
+## Builder — строитель
+
+> **Builder** позволяет сначала задать параметры в отдельном вспомогательном объекте (строителе), а затем получить готовый основной объект. Этот паттерн полезен при большом количестве параметров конструктора.
+
+### Обязательные и необязательные параметры
+
+Допустим, у заказа есть обязательные параметры — идентификатор пользователя `userId` и адрес доставки `address`. Остальные параметры необязательные: комментарий `comment`, оплата при получении `payOnDelivery` и экспресс-доставка `expressDelivery`.
+
+Необязательный параметр — тот, который можно не указывать при создании объекта. Тогда используется заранее выбранное значение по умолчанию. Например, без дополнительных настроек комментария нет, доставка обычная, а оплата при получении выключена.
+
+С обычным конструктором всё равно приходится передавать значения для всех параметров:
+
+```java
+Order order = new Order(15L, "ул. Лесная, 10", null, false, false);
+```
+
+Можно сделать перегруженные конструкторы для разных наборов параметров. Но по мере добавления настроек количество возможных сочетаний будет расти: заказ с комментарием, без комментария, с экспресс-доставкой, с оплатой при получении, с обоими флагами…
+
+Builder позволяет указывать только те параметры, которые нужны:
+
+```java
+Order order = Order.builder(15L, "ул. Лесная, 10")
+        .expressDelivery(true)
+        .build();
+```
+
+Или:
+
+```java
+Order order = Order.builder(15L, "ул. Лесная, 10")
+        .build();
+```
+
+***
+
+### **`Builder`** и **`Order`** — два разных объекта
+
+* **`Order.Builder`** — вспомогательный объект, в котором мы собираем параметры будущего заказа.
+* **`Order`** — основной объект — сам заказ, который получаем после вызова `build()`.
+
+```java
+Order.Builder builder = Order.builder(15L, "ул. Лесная, 10");
+builder.expressDelivery(true);
+Order order = builder.build();
+```
+
+> Мы постепенно настраиваем **не сам заказ**, а отдельный объект, из которого затем будет создан заказ.
+
+***
+
+### Пример реализации
+
+```java
+public final class Order {
+
+    private final long userId;
+    private final String address;
+    private final String comment;
+    private final boolean payOnDelivery;
+    private final boolean expressDelivery;
+
+    private Order(Builder builder) {
+        this.userId = builder.userId;
+        this.address = builder.address;
+        this.comment = builder.comment;
+        this.payOnDelivery = builder.payOnDelivery;
+        this.expressDelivery = builder.expressDelivery;
+    }
+
+    public static Builder builder(long userId, String address) {
+        return new Builder(userId, address);
+    }
+
+    // Здесь будет Builder
+}
+```
+
+Конструктор `Order` получает `Builder` и **копирует из него значения полей**. Он сделан `private`, поэтому внешний код не может напрямую вызвать этот конструктор. Создание заказа будет происходить только через `Builder`.
+
+Метод `builder(...)` — обычный статический метод. Он создаёт и возвращает **новый объект `Builder`**, передавая ему обязательные параметры.
+
+Следующий класс нужно разместить **внутри `Order`**, на месте комментария:
+
+<pre class="language-java"><code class="lang-java">public final class Order {
+
+...
+
+    public static class Builder {
+
+        private final long userId;
+        private final String address;
+
+        private String comment;
+        private boolean payOnDelivery;
+        private boolean expressDelivery;
+
+        private Builder(long userId, String address) {
+            this.userId = userId;
+            this.address = address;
+        }
+
+        public Builder comment(String comment) {
+            this.comment = comment;
+            return this;
+        }
+
+        public Builder payOnDelivery(boolean payOnDelivery) {
+            this.payOnDelivery = payOnDelivery;
+            return this;
+        }
+
+        public Builder expressDelivery(boolean expressDelivery) {
+            this.expressDelivery = expressDelivery;
+            return this;
+        }
+
+        public Order build() {
+            return new Order(this);
+        }
+<strong>    }
+</strong><strong>}
+</strong></code></pre>
+
+У `Builder` есть свои поля. Обязательные заполняются в конструкторе, необязательные — через методы. Пока методы не вызваны, `comment` остаётся `null`, а оба флага — `false`. В методе `build()` выражение:
+
+```java
+new Order(this)
+```
+
+означает: создать заказ и передать ему **текущий объект `Builder`,** чтобы конструктор взял из него настройки.
+
+***
+
+### Fluent interface — цепочка вызовов
+
+> **Fluent interface** — стиль написания методов, при котором их совместное использование читается как одно выражение. Часто для этого используют цепочки вызовов.
+
+В нашем примере:
+
+```java
+Order order = Order.builder(15L, "ул. Лесная, 10")
+        .comment("Подъезд со стороны двора")
+        .payOnDelivery(false)
+        .expressDelivery(true)
+        .build();
+```
+
+Получается последовательность: начать создание заказа → указать комментарий → настроить оплату → выбрать экспресс-доставку → создать заказ.
+
+Цепочка работает благодаря двум деталям методов настройки:
+
+```java
+public Builder expressDelivery(boolean expressDelivery) {
+    this.expressDelivery = expressDelivery;
+    return this;
+}
+```
+
+Метод возвращает значение типа **`Builder`**, а не `void`. При этом `return this` возвращает **тот же `Builder`**, у которого вызвали метод. Поэтому после `expressDelivery(true)` можно сразу вызвать у него следующий метод.
+
+Если бы метод возвращал `void`, такой вызов был бы допустим:
+
+```java
+builder.expressDelivery(true);
+```
+
+Но продолжить его через точку уже не получилось бы: не было бы возвращаемого объекта.
+
+Методы настройки возвращают `Builder`, а завершающий метод `build()` — **`Order`**.
+
+Слово _interface_ здесь не означает, что нужно объявлять Java-интерфейс через `interface`. Речь о том, **как устроен способ использования методов**.
+
+***
+
+### Проверка параметров в `build()`
+
+Обязательные параметры мы передаём сразу в `builder(...)`. Но это ещё не гарантирует, что значения правильные:
+
+```java
+Order.builder(0L, null);
+```
+
+Аргументы переданы, их типы подходят — компилятор не найдёт ошибки.
+
+Поэтому перед созданием заказа нужно добавить проверки:
+
+```java
+public Order build() {
+    if (userId <= 0) {
+        throw new IllegalArgumentException("Некорректный ID пользователя");
+    }
+
+    if (address == null || address.isBlank()) {
+        throw new IllegalArgumentException("Адрес обязателен");
+    }
+
+    return new Order(this);
+}
+```
+
+Теперь `Order` создаётся только после успешного прохождения проверок. Например:
+
+```java
+Order order = Order.builder(15L, "")
+        .expressDelivery(true)
+        .build(); // IllegalArgumentException: Адрес обязателен
+```
+
+***
+
+### Чем это отличается от сеттеров?
+
+Сеттеры изменяют **сам объект**. Например, после `new Order()` можно было бы постепенно вызывать `setAddress()`, `setComment()` и другие методы.
+
+Но тогда уже созданный заказ некоторое время может оставаться без обязательного адреса. Если передать его другому коду слишком рано, тот получит неполностью заполненный объект.
+
+В Builder промежуточные настройки находятся отдельно. Мы получаем заказ только после завершения настройки и проверок. Кроме того, у `Order` поля `final`, и мы не добавили методы, которые их изменяют. Поэтому готовый заказ нельзя случайно изменить через сеттеры.
+
+**Сам по себе Builder не запрещает изменять созданный объект.** Это зависит от того, какие поля и методы мы предусмотрели в классе результата.
+
+Минус Builder: пришлось написать дополнительный класс и повторить в нём поля. Поэтому он полезен не для любого объекта, а там, где удобство создания действительно оправдывает дополнительный код.
+
+***
+
+## Фабрика
+
+Вспомним пример из SOLID про отправку уведомлений через общий интерфейс:
+
+```java
+interface NotificationSender {
+    void send(String text);
+}
+```
+
+У него могут быть разные реализации:
+
+```java
+class EmailSender implements NotificationSender {
+
+    @Override
+    public void send(String text) {
+        System.out.println("Email: " + text);
+    }
+}
+
+class WebsiteSender implements NotificationSender {
+
+    @Override
+    public void send(String text) {
+        System.out.println("На сайте: " + text);
+    }
+}
+```
+
+#### Проблема: кто выбирает конкретный класс?
+
+Допустим, внутри сервиса заказов написано:
+
+```java
+private final NotificationSender sender = new EmailSender();
+```
+
+Слева указан интерфейс `NotificationSender`, но справа сервис **сам выбрал конкретную реализацию** — `EmailSender`. Чтобы изменить способ отправки, придётся менять код.
+
+Теперь представим, что выбор между email и уведомлением на сайте нужен в нескольких местах. Если везде повторять одинаковые условия, то при добавлении нового способа придётся найти и исправить каждое такое место.
+
+Фабрика позволяет вынести выбор и создание объекта отдельно.
+
+***
+
+### Simple Factory — простая фабрика
+
+> **Простая фабрика** — отдельный класс или метод, которому передают нужные параметры, а он выбирает и создаёт подходящий объект. Вызывающему коду не нужно самостоятельно разбирать все варианты создания.
+
+Сначала перечислим доступные варианты уведомлений:
+
+```java
+enum NotificationType {
+    EMAIL,
+    WEBSITE
+}
+```
+
+Теперь напишем фабрику:
+
+```java
+class NotificationSenderFactory {
+
+    public static NotificationSender create(NotificationType type) {
+        if (type == null) {
+            throw new IllegalArgumentException("Тип уведомления обязателен");
+        }
+
+        return switch (type) {
+            case EMAIL -> new EmailSender();
+            case WEBSITE -> new WebsiteSender();
+        };
+    }
+}
+```
+
+Фабрика получает тип уведомления и возвращает **объект для отправки**. Для `EMAIL` это будет `EmailSender`, для `WEBSITE` — `WebsiteSender`. Возвращаемый тип метода — общий интерфейс `NotificationSender`, потому что обе реализации ему соответствуют.
+
+```java
+class OrderService {
+
+    private final NotificationSender sender;
+
+    public OrderService(NotificationSender sender) {
+        this.sender = sender;
+    }
+
+    public void createOrder() {
+        // Здесь находится логика создания заказа.
+
+        sender.send("Заказ создан");
+    }
+}
+```
+
+Создавать отправителя и выбирать его конкретный класс сервису не нужно. В Main-классе пишем:
+
+```java
+NotificationSender sender = NotificationSenderFactory.create(NotificationType.EMAIL);
+
+OrderService service = new OrderService(sender);
+service.createOrder();
+```
+
+Получаем:
+
+```
+Email: Заказ создан
+```
+
+Для уведомления на сайте достаточно передать фабрике `NotificationType.WEBSITE`. **Код `OrderService` при этом не меняется.**
+
+***
+
+#### Что произойдёт при добавлении SMS?
+
+Понадобится добавить реализацию `SmsSender`, значение `SMS` в `enum` и ещё одну ветку в фабрику:
+
+```java
+case SMS -> new SmsSender();
+```
+
+Сам `OrderService` менять не потребуется: он по-прежнему работает с `NotificationSender`. Но фабрику изменить придётся. Поэтому нельзя сказать, что фабрика полностью избавляет нас от изменений. Скорее она **собирает выбор конкретной реализации в одном месте**, вместо того чтобы повторять его в разных сервисах.
+
+***
+
+### Factory Method — фабричный метод
+
+У Factory Method другой способ создания объектов.
+
+> **Factory Method** — паттерн, в котором базовый класс объявляет метод создания объекта, а наследники определяют, какой конкретно объект этот метод вернёт. Для этого они переопределяют метод.
+
+Представим общий процесс отправки уведомления: сначала проверить текст, затем получить отправителя и выполнить отправку.
+
+Проверки и последовательность действий одинаковые. А вот отправители нужны разные.
+
+```java
+abstract class NotificationService {
+
+    public void notifyUser(String text) {
+        if (text == null || text.isBlank()) {
+            throw new IllegalArgumentException("Текст уведомления обязателен");
+        }
+
+        NotificationSender sender = createSender();
+        sender.send(text);
+    }
+
+    protected abstract NotificationSender createSender();
+}
+```
+
+Базовый класс знает, **когда ему нужен отправитель**, но не выбирает его конкретный класс. Вместо `new EmailSender()` он вызывает `createSender()`. Именно `createSender()` в этом примере — **фабричный метод**.
+
+***
+
+Для email:
+
+```java
+class EmailNotificationService extends NotificationService {
+
+    @Override
+    protected NotificationSender createSender() {
+        return new EmailSender();
+    }
+}
+```
+
+Для уведомлений на сайте:
+
+```java
+class WebsiteNotificationService extends NotificationService {
+
+    @Override
+    protected NotificationSender createSender() {
+        return new WebsiteSender();
+    }
+}
+```
+
+Используем:
+
+```java
+NotificationService service = new EmailNotificationService();
+service.notifyUser("Заказ создан"); // Email: Заказ создан
+```
+
+Метод `notifyUser()` достался объекту от базового класса `NotificationService`. Он проверит текст и вызовет `createSender()`. Но реальный объект — `EmailNotificationService`, поэтому будет использована **переопределённая версия `createSender()` из этого класса**. Она вернёт `EmailSender`, который и выполнит отправку.
+
+Если создать другой сервис:
+
+```java
+NotificationService service = new WebsiteNotificationService();
+service.notifyUser("Заказ создан"); // На сайте: Заказ создан
+```
+
+общая последовательность действий останется прежней, но `createSender()` вернёт уже `WebsiteSender`.
+
+Это применение знакомого нам полиморфизма: **метод вызывается в общей логике, а его конкретная реализация зависит от реального объекта**.
+
+***
+
+|                                  | Simple Factory                    | Factory Method                                                    |
+| -------------------------------- | --------------------------------- | ----------------------------------------------------------------- |
+| Кто выбирает создаваемый объект? | Метод фабрики через `switch`      | Конкретный наследник                                              |
+| От чего зависит выбор?           | От переданного `NotificationType` | От переопределённого `createSender()`                             |
+| Как добавить новый вариант?      | Дополнить фабрику                 | Добавить нового наследника с другой реализацией фабричного метода |
+
+Если нам достаточно выбрать один из нескольких объектов по переданному типу, простая фабрика решает эту задачу без дополнительной иерархии классов.
+
+Factory Method полезен в ситуации, когда **есть общая логика базового класса, но один из используемых объектов должны создавать по-разному разные наследники**.
+
+***
+
+## Singleton — одиночка
+
+Обычно класс позволяет создавать сколько угодно объектов:
+
+```java
+User first = new User("Anna", 20);
+User second = new User("Ivan", 25);
+```
+
+Для пользователей это правильно: каждый объект представляет отдельного пользователя.
+
+Но иногда по требованиям программы нужен **один общий экземпляр определённого класса**. Например, мы решили, что все части приложения должны использовать один объект общих настроек `AppSettings`.
+
+> **Singleton** — паттерн, при котором класс управляет созданием своего единственного экземпляра и предоставляет способ получить этот экземпляр.
+
+***
+
+Можно написать в `main`:
+
+```java
+AppSettings settings = new AppSettings();
+```
+
+и передавать эту ссылку другим объектам.
+
+Но если конструктор остаётся доступным, другой разработчик сможет случайно где-нибудь создать ещё один экземпляр:
+
+```java
+AppSettings anotherSettings = new AppSettings();
+```
+
+Никакого запрета в самом классе нет. Мы лишь договорились пользоваться одним объектом. Singleton переносит управление созданием **в сам класс**: внешний код не вызывает конструктор, а обращается за уже существующим экземпляром. Так исчезает вероятность случайной ошибки.
+
+***
+
+### Основная реализация: `private static final` + `getInstance()`
+
+```java
+public final class AppSettings {
+
+    private static final AppSettings INSTANCE = new AppSettings();
+
+    private final String language = "ru";
+
+    private AppSettings() {
+    }
+
+    public static AppSettings getInstance() {
+        return INSTANCE;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+}
+```
+
+Получаем настройки:
+
+```java
+AppSettings settings = AppSettings.getInstance();
+System.out.println(settings.getLanguage()); // ru
+```
+
+Мы не пишем `new AppSettings()` во внешнем коде.
+
+***
+
+Приватный конструктор
+
+```java
+private AppSettings() {
+}
+```
+
+запрещает внешнему коду обычным способом создавать экземпляры:
+
+```java
+AppSettings settings = new AppSettings(); // ошибка компиляции
+```
+
+Но **внутри самого `AppSettings`** вызов его приватного конструктора разрешён. Поэтому класс может создать собственный экземпляр.
+
+Если оставить конструктор `public`, любой код сможет сделать ещё один объект, даже при наличии `getInstance()`.
+
+***
+
+```java
+private static final AppSettings INSTANCE = new AppSettings();
+```
+
+**`static`** — поле принадлежит классу. Для хранения этой ссылки не требуется предварительно создавать объект `AppSettings`.
+
+**`final`** — после инициализации в поле нельзя записать ссылку на другой экземпляр.
+
+**`private`** — внешний код не обращается к полю напрямую. В этой реализации доступ предоставляется через метод.
+
+Справа стоит обычное создание объекта:
+
+```java
+new AppSettings()
+```
+
+Полученная ссылка сохраняется в `INSTANCE`.
+
+При этом `final` у `INSTANCE` запрещает менять **ссылку**, а не автоматически запрещает любые изменения внутри объекта.
+
+***
+
+```java
+public static AppSettings getInstance() {
+    return INSTANCE;
+}
+```
+
+Метод возвращает ссылку, которая уже хранится в поле `INSTANCE`.
+
+```java
+AppSettings first = AppSettings.getInstance();
+AppSettings second = AppSettings.getInstance();
+
+System.out.println(first == second); // true
+```
+
+Здесь две переменные, но **объект один и тот же**.
+
+Если бы внутри `getInstance()` было написано `return new AppSettings()`, каждый вызов создавал бы новый объект — и требование единственности нарушалось бы.
+
+***
+
+#### Когда создаётся экземпляр?
+
+В этой реализации `new AppSettings()` выполняется перед выполнением первого вызова `AppSettings.getInstance()`. При следующих вызовах повторно создавать экземпляр не потребуется.
+
+Такой вариант называют **ранней инициализацией — eager initialization**.
+
+***
+
+```java
+AppSettings.getInstance().getLanguage();
+```
+
+Сначала вызывается **статический** метод `getInstance()` — для него не нужен объект. Он возвращает общий экземпляр.
+
+Затем у этого экземпляра вызывается **обычный** метод `getLanguage()`.
+
+То есть Singleton остаётся объектом с полями и обычными методами. Особенность в том, **как контролируется его создание и как его получают**.
+
+***
+
+### Реализация через `enum`
+
+Мы уже знаем, что значения `enum` — это объекты, а набор этих объектов заранее определяется внутри перечисления. Например, у `Priority` могут быть три значения: `LOW`, `MEDIUM`, `HIGH`.
+
+А что будет, если объявить **только одно значение**?
+
+Вместо предыдущего класса можно написать:
+
+```java
+public enum AppSettings {
+
+    INSTANCE;
+
+    private final String language = "ru";
+
+    public String getLanguage() {
+        return language;
+    }
+}
+```
+
+Теперь `INSTANCE` — единственный экземпляр этого `enum`. Создать дополнительные значения через `new AppSettings()` Java не разрешает.
+
+Используем:
+
+```java
+AppSettings settings = AppSettings.INSTANCE;
+System.out.println(settings.getLanguage()); // ru
+```
+
+Здесь не нужно вручную писать `getInstance()` и поле с выражением `new AppSettings()` — роль общего экземпляра выполняет константа `INSTANCE`.
+
+***
+
+{% hint style="danger" icon="circle-question" %}
+Будет ли класс Singleton, если у него есть поле `private static final INSTANCE`, метод `getInstance()` и `public` конструктор?
+{% endhint %}
