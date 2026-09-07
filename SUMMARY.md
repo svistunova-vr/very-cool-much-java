@@ -12,3 +12,4 @@
   * [Исключения](java-core/isklyucheniya.md)
   * [Maven](java-core/maven.md)
   * [SOLID](java-core/solid.md)
+  * [Паттерны проектирования](java-core/patterny-proektirovaniya.md)
