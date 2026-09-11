@@ -16,9 +16,9 @@ description: Срок на изучение - 4 рабочих дня
 6. Какую роль играет интерфейс `Iterable` в работе с коллекциями?
 7. Сравните `ArrayList` и `LinkedList` с точки зрения внутреннего устройства и временной сложности основных операций (вставка, удаление, получение элемента по индексу и по значению).
 8. В каких случаях предпочтительнее использование `ArrayList`, а в каких — `LinkedList`?
-9. Опишите устройство `HashMap`. Что такое хэш-функция? Что такое коллизия? Как `HashMap` работает с коллизиями (связные списки, преобразование в деревья в Java 8+)? Что такое коэффициент нагрузки (load factor)?
-10. Какой контракт между методами `equals()` и `hashCode()`? К каким последствиям может привести его нарушение при использовании объектов в качестве ключей в `HashMap`?
-11. В чем заключаются особенности `LinkedHashMap` и `TreeMap`?
+9. <mark style="background-color:green;">Опишите устройство</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`HashMap`</mark><mark style="background-color:green;">. Что такое хэш-функция? Что такое коллизия? Как</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`HashMap`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">работает с коллизиями (связные списки, преобразование в деревья в Java 8+)? Что такое коэффициент нагрузки (load factor)?</mark>
+10. <mark style="background-color:green;">Какой контракт между методами</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`equals()`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">и</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`hashCode()`</mark><mark style="background-color:green;">? К каким последствиям может привести его нарушение при использовании объектов в качестве ключей в</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`HashMap`</mark><mark style="background-color:green;">?</mark>
+11. <mark style="background-color:green;">В чем заключаются особенности</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`LinkedHashMap`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">и</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`TreeMap`</mark><mark style="background-color:green;">?</mark>
 12. Опишите внутреннее устройство и принципы работы `HashSet`, `LinkedHashSet` и `TreeSet`.
 13. В чем разница между интерфейсами `Comparable` и `Comparator`? Когда следует использовать каждый из них?
 14. Методы компараторов — `Comparator.comparing()`, `thenComparing()`, `reversed()`, `nullsFirst`, `nullsLast`.
@@ -90,3 +90,9 @@ description: Срок на изучение - 4 рабочих дня
 * Методы для работы со связанными данными (например, получение всех заявок по всем продуктам определенного типа)
 
 </details>
+
+***
+
+{% content-ref url="map.md" %}
+[map.md](map.md)
+{% endcontent-ref %}
