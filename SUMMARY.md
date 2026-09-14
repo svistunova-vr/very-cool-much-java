@@ -18,3 +18,5 @@
   * [Map](collections-generics-i-funkcionalnoe-programmirovanie/map.md)
   * [Set, Comparable и Comparator](collections-generics-i-funkcionalnoe-programmirovanie/set-comparable-i-comparator.md)
   * [Потокобезопасные коллекции](collections-generics-i-funkcionalnoe-programmirovanie/potokobezopasnye-kollekcii.md)
+  * [Неизменяемые коллекции](collections-generics-i-funkcionalnoe-programmirovanie/neizmenyaemye-kollekcii.md)
+  * [Generics](collections-generics-i-funkcionalnoe-programmirovanie/generics.md)
