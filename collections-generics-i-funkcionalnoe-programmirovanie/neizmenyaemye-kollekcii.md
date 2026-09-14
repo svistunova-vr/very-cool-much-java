@@ -165,7 +165,7 @@ original.add("EXPRESS");
 System.out.println(readOnly); // [COURIER, PICKUP, EXPRESS]
 ```
 
-Через `readOnly` список изменить нельзя, но через `original` - все еще можно, и эти изменения автоматически увидит и `readOnly`, так как меняется общий объект в памяти. Поэтому такой объект называют неизменяемым **представлением** (**unmodifiable view**.
+Через `readOnly` список изменить нельзя, но через `original` - все еще можно, и эти изменения автоматически увидит и `readOnly`, так как меняется общий объект в памяти. Поэтому такой объект называют неизменяемым **представлением** (**unmodifiable view**).
 
 Следовательно, один только вызов:
 
@@ -184,6 +184,10 @@ Collections.unmodifiableList(original);
 Сначала можно скопировать исходный список, а затем запретить изменение копии:
 
 ```java
+List<String> original = new ArrayList<>();
+original.add("COURIER");
+original.add("PICKUP");
+
 List<String> snapshot = Collections.unmodifiableList(
         new ArrayList<>(original)
 );
@@ -420,7 +424,7 @@ System.out.println(channels); // [EMAIL_DISABLED]
 
 ## `Arrays.asList()`
 
-Иногда путают `of()` или `copyOf()` с `Arrays.asList()`. `Arrays.asList()`не создаёт неизменяемый список:
+Иногда путают `of()` или `copyOf()` с `Arrays.asList()`. `Arrays.asList()` не создаёт неизменяемый список:
 
 ```java
 List<String> methods = Arrays.asList("COURIER", "PICKUP");
@@ -495,5 +499,5 @@ System.out.println(snapshot);
 
 Начиная с Java 9 появились методы `List.of()`, `Set.of()` и `Map.of()` — они создают неизменяемые коллекции из переданных элементов. Они запрещают `null`; `Set.of()` не допускает дубли элементов, а `Map.of()` — дубли ключей. До 10 включительно пар ключ-значение можно перечислять в `Map.of()`, если нужно больше — используется `Map.ofEntries()`.
 
-Начиная с Java 10 появились методы `List.copyOf()`, `Set.copyOf()` и `Map.copyOf()` — они позволяют получить неизменяемую копию существующей коллекции.&#x20;
+Начиная с Java 10 появились методы `List.copyOf()`, `Set.copyOf()` и `Map.copyOf()` — они позволяют получить неизменяемую копию существующей коллекции.
 {% endhint %}

@@ -80,7 +80,7 @@ System.out.println(order.getId());
 
 ### Что означают `T`, `E`, `K` и `V`
 
-Если заглянуть в класс `List`, увидим `List<E>`:
+Если заглянуть в интерфейс `List`, увидим `List<E>`:
 
 <figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
@@ -148,7 +148,7 @@ Delivery<FoodOrder> foodDelivery = new Delivery<>(foodOrder, "Москва, ул
 Delivery<Parcel> parcelDelivery = new Delivery<>(parcel, "Москва, ул. Тверская, 12");
 ```
 
-Для `foodDelivery` компилятор подставляет вместо `T` тип `FoodOrder`, для `parcelDelivery` — `Parcel`. Cодержимое можно получить без явного преобразования типов:
+Для `foodDelivery` компилятор подставляет вместо `T` тип `FoodOrder`, для `parcelDelivery` — `Parcel`. Содержимое можно получить без явного преобразования типов:
 
 ```java
 FoodOrder deliveredFood = foodDelivery.getContent();
@@ -458,7 +458,7 @@ static void printSize(List<?> values) {
 }
 ```
 
-Сюда можно передать `List<Order>`, `List<String>` или любой другой список — не зависимо от типа элементов, у любого списка есть размер.
+Сюда можно передать `List<Order>`, `List<String>` или любой другой список — независимо от типа элементов, у любого списка есть размер.
 
 А `List<Object>` — список, в который разрешено добавлять разные объекты:
 
