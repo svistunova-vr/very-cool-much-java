@@ -8,7 +8,7 @@ description: Срок на изучение - 5 рабочих дней
 
 <summary>Вопросы</summary>
 
-1. Опишите основные области памяти JVM: Heap, Stack, Metaspace.
+1. <mark style="background-color:green;">Опишите основные области памяти JVM: Heap, Stack, Metaspace.</mark>
 2. Расскажите про устройство Heap: Young Generation (Eden, Survivor Spaces) и Old Generation.
 3. Что такое сборка мусора? Кратко расскажите про основные типы сборщиков (Serial, Parallel, G1, ZGC). Какой используется умолчанию в каких версиях Java?
 4. Что такое утечка памяти в Java? Приведите примеры, когда могут возникнуть утечки.

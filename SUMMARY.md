@@ -20,4 +20,5 @@
   * [Потокобезопасные коллекции](collections-generics-i-funkcionalnoe-programmirovanie/potokobezopasnye-kollekcii.md)
   * [Неизменяемые коллекции](collections-generics-i-funkcionalnoe-programmirovanie/neizmenyaemye-kollekcii.md)
   * [Generics](collections-generics-i-funkcionalnoe-programmirovanie/generics.md)
-* [Concurrency, Performance и JVM](concurrency-performance-i-jvm.md)
+* [Concurrency, Performance и JVM](concurrency-performance-i-jvm/README.md)
+  * [Основные области памяти JVM](concurrency-performance-i-jvm/osnovnye-oblasti-pamyati-jvm.md)
