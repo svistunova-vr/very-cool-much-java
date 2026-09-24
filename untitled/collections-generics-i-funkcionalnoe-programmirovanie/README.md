@@ -1,0 +1,106 @@
+---
+description: Срок на изучение - 4 рабочих дня
+---
+
+# Collections, Generics и функциональное программирование
+
+<details>
+
+<summary>Вопросы</summary>
+
+1. Что такое аннотации? Зачем они нужны?
+2. Встроенные аннотации: `@Override`, `@Deprecated`, `@SuppressWarnings`, `@FunctionalInterface`.
+3. Что такое метааннотации? Для чего используются `@Target`, `@Retention`, `@Documented` и `@Inherited`?
+4. Что такое Lombok? Основные аннотации. Какие проблемы они решают?
+5. Назовите корневые интерфейсы Java Collections Framework (`Collection`, `Map`, `List`, `Set`, `Queue`). Опишите их иерархию и ключевые отличия.
+6. Какую роль играет интерфейс `Iterable` в работе с коллекциями?
+7. Сравните `ArrayList` и `LinkedList` с точки зрения внутреннего устройства и временной сложности основных операций (вставка, удаление, получение элемента по индексу и по значению).
+8. В каких случаях предпочтительнее использование `ArrayList`, а в каких — `LinkedList`?
+9. <mark style="background-color:green;">Опишите устройство</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`HashMap`</mark><mark style="background-color:green;">. Что такое хэш-функция? Что такое коллизия? Как</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`HashMap`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">работает с коллизиями (связные списки, преобразование в деревья в Java 8+)? Что такое коэффициент нагрузки (load factor)?</mark>
+10. <mark style="background-color:green;">Какой контракт между методами</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`equals()`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">и</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`hashCode()`</mark><mark style="background-color:green;">? К каким последствиям может привести его нарушение при использовании объектов в качестве ключей в</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`HashMap`</mark><mark style="background-color:green;">?</mark>
+11. <mark style="background-color:green;">В чем заключаются особенности</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`LinkedHashMap`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">и</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`TreeMap`</mark><mark style="background-color:green;">?</mark>
+12. <mark style="background-color:green;">Опишите внутреннее устройство и принципы работы</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`HashSet`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`LinkedHashSet`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">и</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`TreeSet`</mark><mark style="background-color:green;">.</mark>
+13. <mark style="background-color:green;">В чем разница между интерфейсами</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Comparable`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">и</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Comparator`</mark><mark style="background-color:green;">? Когда следует использовать каждый из них?</mark>
+14. <mark style="background-color:green;">Методы компараторов —</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Comparator.comparing()`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`thenComparing()`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`reversed()`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`nullsFirst`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`nullsLast`</mark><mark style="background-color:green;">.</mark>
+15. <mark style="background-color:green;">Как обеспечивается уникальность элементов в каждой из реализаций</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Set`</mark><mark style="background-color:green;">?</mark>
+16. <mark style="background-color:green;">Как</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`TreeSet`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">поддерживает элементы в отсортированном порядке? Какую роль играют</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Comparable`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">и</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Comparator`</mark><mark style="background-color:green;">?</mark>&#x20;
+17. <mark style="background-color:green;">Что произойдёт, если</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`equals()`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">и</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`compareTo()`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">/</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`compare()`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">по-разному определяют равенство? Например,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`equals()`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">возвращает</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`false`</mark><mark style="background-color:green;">, а</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`compareTo()`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">/</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`compare()`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">—</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`0`</mark><mark style="background-color:green;">?</mark>
+18. <mark style="background-color:green;">Опишите базовый принцип работы "Copy-On-Write" коллекций (</mark><mark style="background-color:green;">`CopyOnWriteArrayList`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`CopyOnWriteArraySet`</mark><mark style="background-color:green;">) и типичные сценарии их применения.</mark>
+19. <mark style="background-color:green;">Назовите основные классы потокобезопасных коллекций (например,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`ConcurrentHashMap`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`ConcurrentLinkedQueue`</mark><mark style="background-color:green;">) и их общее предназначение.</mark>
+20. <mark style="background-color:green;">Какие реализации интерфейса</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Queue`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">вы знаете (</mark><mark style="background-color:green;">`ArrayBlockingQueue`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`LinkedBlockingQueue`</mark><mark style="background-color:green;">) и в каких общих системах (например, пулы потоков) они могут применяться?</mark>
+21. <mark style="background-color:green;">В чем заключаются преимущества неизменяемых коллекций с точки зрения потокобезопасности и проектирования API?</mark>
+22. <mark style="background-color:green;">Какие способы создания неизменяемых коллекций предоставляет Java (методы</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Collections.unmodifiable`</mark><mark style="background-color:green;">...,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`List.of()`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Set.of()`</mark><mark style="background-color:green;">,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Map.of()`</mark><mark style="background-color:green;">)?</mark>
+23. <mark style="background-color:green;">Какова цель введения generics в Java?</mark> <mark style="background-color:green;">Какие проблемы они решают?</mark>
+24. <mark style="background-color:green;">Объясните концепции вариантности: инвариантность, ковариантность (</mark><mark style="background-color:green;">`? extends T`</mark><mark style="background-color:green;">) и контрвариантность (</mark><mark style="background-color:green;">`? super T`</mark><mark style="background-color:green;">).</mark>
+25. <mark style="background-color:green;">Что такое стирание типов (type erasure) и как оно влияет на работу с generics?</mark>
+26. <mark style="background-color:green;">Объясните принцип PECS.</mark>
+27. Дайте определение функциональному интерфейсу. Перечислите и охарактеризуйте основные функциональные интерфейсы из пакета `java.util.function` (`Predicate`, `Consumer`, `Function`, `Supplier` и др.).
+28. Лямбда-выражения, ссылки на методы (Method References).
+29. Что такое `Stream`? Какова его связь с коллекциями?
+30. Классифицируйте промежуточные (lazy) и терминальные (eager) операции. В чем суть ленивых вычислений в Stream API?
+31. Каковы преимущества и риски использования параллельных потоков (`parallelStream()`)? Когда их применение оправдано, а когда может привести к проблемам с производительностью или корректностью?
+32. Какова основная цель класса `Optional`? Каковы правильные и анти-паттерны его использования?
+33. Объясните разницу между методами `orElse()` и `orElseGet()`, `map()` и `flatMap()`?
+34. Какие преимущества предоставляют `records` по сравнению с использованием Lombok-аннотаций для создания DTO? Каковы их ограничения?
+35. Применение `sealed` классов и интерфейсов.
+36. `instanceof` с pattern matching, расширенные выражения `switch`.
+37. `text blocks`
+
+</details>
+
+<details>
+
+<summary>Задание</summary>
+
+Менеджерам банка необходима аналитика по продуктам и заявкам: отслеживание популярности продуктов, статистика обработки заявок, выявление невостребованных продуктов. Эти данные нужны для принятия стратегических решений.
+
+#### **Задача**
+
+Реализовать универсальное in-memory хранилище для сущностей финансовой системы и аналитические сервисы для бизнес-аналитики.
+
+#### Требования
+
+**Универсальное хранилище**
+
+* Создайте параметризованный класс хранилища, который может работать с любыми типами сущностей.
+* Реализуйте хранение данных в структуре, обеспечивающей быстрый поиск по идентификатору.
+* Реализуйте основные CRUD операции: добавление, обновление, удаление, получение всех записей.
+
+**Безопасная работа с данными**
+
+* Реализуйте метод поиска сущности по идентификатору, который возвращает результат в контейнере Optional.
+* Обеспечьте обработку случаев, когда сущность не найдена.
+
+**Система сортировки**&#x20;
+
+* Реализуйте метод получения всех записей с поддержкой сортировки по нескольким критериям.
+* Используйте цепочки компараторов для сложной сортировки (например, сначала по типу продукта, затем по ставке, затем по сроку).
+* Добавьте поддержку сортировки в прямом и обратном порядке.
+
+**Аналитические функции**&#x20;
+
+Реализуйте методы для аналитики, используя Stream API:
+
+* Группировка продуктов по типу с расчетом средних значений числовых параметров (процентные ставки, минимальные суммы)
+* Фильтрация активных продуктов по критериям: ставка выше заданного значения, минимальная сумма ниже лимита
+* Статистика по заявкам: средняя сумма запроса, максимальный срок, распределение по статусам в процентах
+* Поиск невостребованных продуктов - продукты, на которые не было заявок за указанный период
+* Анализ клиентской активности - группировка заявок по возрастным категориям клиентов с расчетом средних сумм
+* Ранжирование продуктов по популярности - на основе количества поданных заявок и процента одобрения
+* Методы для работы со связанными данными (например, получение всех заявок по всем продуктам определенного типа)
+
+</details>
+
+***
+
+{% content-ref url="map.md" %}
+[map.md](map.md)
+{% endcontent-ref %}
+
+{% content-ref url="set-comparable-i-comparator.md" %}
+[set-comparable-i-comparator.md](set-comparable-i-comparator.md)
+{% endcontent-ref %}
+
+{% content-ref url="potokobezopasnye-kollekcii.md" %}
+[potokobezopasnye-kollekcii.md](potokobezopasnye-kollekcii.md)
+{% endcontent-ref %}
