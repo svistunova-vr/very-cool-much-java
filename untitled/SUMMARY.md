@@ -23,3 +23,4 @@
 * [Concurrency, Performance и JVM](concurrency-performance-i-jvm/README.md)
   * [Основные области памяти JVM](concurrency-performance-i-jvm/osnovnye-oblasti-pamyati-jvm.md)
   * [Garbage Collection и утечки памяти](concurrency-performance-i-jvm/garbage-collection-i-utechki-pamyati.md)
+  * [JIT-компилятор](concurrency-performance-i-jvm/jit-kompilyator.md)
