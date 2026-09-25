@@ -12,7 +12,7 @@ description: Срок на изучение - 5 рабочих дней
 2. <mark style="background-color:green;">Расскажите про устройство Heap: Young Generation (Eden, Survivor Spaces) и Old Generation.</mark>
 3. <mark style="background-color:green;">Что такое сборка мусора? Кратко расскажите про основные типы сборщиков (Serial, Parallel, G1, ZGC). Какой используется умолчанию в каких версиях Java?</mark>
 4. <mark style="background-color:green;">Что такое утечка памяти в Java? Приведите примеры, когда могут возникнуть утечки.</mark>
-5. Объясните принцип работы JIT-компилятора в JVM. Что такое "разогрев" приложения?
+5. <mark style="background-color:green;">Объясните принцип работы JIT-компилятора в JVM. Что такое "разогрев" приложения?</mark>
 6. Можно ли использовать `System.currentTimeMillis()` для измерения скорости работы метода? Что такое фреймворк JMH и зачем он нужен?
 7. В чем разница между процессом и потоком? Как потоки разделяют ресурсы внутри одного процесса?
 8. Дайте определение многопоточности. Какие у нее преимущества и недостатки?
@@ -80,3 +80,6 @@ description: Срок на изучение - 5 рабочих дней
 [garbage-collection-i-utechki-pamyati.md](garbage-collection-i-utechki-pamyati.md)
 {% endcontent-ref %}
 
+{% content-ref url="jit-kompilyator.md" %}
+[jit-kompilyator.md](jit-kompilyator.md)
+{% endcontent-ref %}
