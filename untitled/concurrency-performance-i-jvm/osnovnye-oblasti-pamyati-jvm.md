@@ -28,6 +28,7 @@ JVM описывается спецификацией от разработчи�
 
 Пусть есть такой код:
 
+{% code collapsedlinecount="10" %}
 ```java
 @RequiredArgsConstructor
 class Payment {
@@ -40,7 +41,9 @@ class Payment {
     }
 }
 ```
+{% endcode %}
 
+{% code collapsedlinecount="10" %}
 ```java
 class PaymentService {
 
@@ -61,12 +64,15 @@ class PaymentService {
     }
 }
 ```
+{% endcode %}
 
+{% code collapsedlinecount="10" %}
 ```java
 Payment payment = new Payment(1001L, 50_000L);
 PaymentService service = new PaymentService();
 PaymentResult result = service.process(payment);
 ```
+{% endcode %}
 
 Теперь проследим, что происходит.
 
@@ -80,12 +86,15 @@ Heap является общим для всех JVM threads и обслужив
 
 Когда выполняется:
 
+{% code collapsedlinecount="10" %}
 ```java
 new Payment(1001L, 50_000L)
 ```
+{% endcode %}
 
 появляется объект:
 
+{% code collapsedlinecount="10" %}
 ```
 Heap
 
@@ -95,8 +104,9 @@ Payment@123
 │ amount = 50000 │
 └────────────────┘
 ```
+{% endcode %}
 
-Поля `long id`, `long amount` тоже находятся **внутри объекта в Heap**, не смотря на то, что это примитивы.
+Поля `long id`, `long amount` тоже находятся **внутри объекта в Heap**, несмотря на то, что это примитивы.
 
 `payment` является локальной переменной метода, поэтому конкретная **ссылка** на нее находится в frame этого метода. Но **сам объект** находится в Heap.
 
@@ -110,12 +120,14 @@ Payment@123
 
 Нет, например:
 
+{% code collapsedlinecount="10" %}
 ```java
 class Order {
 
     private Payment payment;
 }
 ```
+{% endcode %}
 
 Объект `Order` находится в Heap, а значит его поле `payment` (ссылка на `Payment`) тоже является частью объекта в Heap.
 
@@ -130,13 +142,15 @@ class Order {
 * `-Xms` — размер Heap на старте работы приложения
 * `-Xmx` — максимальный размер, до которого Heap разрешено расти&#x20;
 
-Например, `-Xms512m -Xmx2g`: при запуске Heap выделяется 512 Мб, в процессе работы приложения создаются новые объекты и Heap увеличивается, но максимум до 2 Гб — если это значение будет превышено, приложение упадет с `OutOfMemory` error:
+Например, `-Xms512m -Xmx2g`: при запуске Heap выделяется 512 Мб, в процессе работы приложения создаются новые объекты и Heap увеличивается, но максимум до 2 Гб — если это значение будет превышено, приложение упадет с `OutOfMemoryError`:
 
+{% code collapsedlinecount="10" %}
 ```
 java.lang.OutOfMemoryError: Java heap space
 ```
+{% endcode %}
 
-В Intellij эти параметры можно настроить так:
+В IntelliJ эти параметры можно настроить так:
 
 <figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
 
@@ -160,6 +174,7 @@ java.lang.OutOfMemoryError: Java heap space
 
 Допустим, выполняется цепочка:
 
+{% code collapsedlinecount="10" %}
 ```java
 main()
     ↓
@@ -169,6 +184,7 @@ calculateCommission()
     ↓
 getAmount()
 ```
+{% endcode %}
 
 Пока выполняется `getAmount()`, Stack выглядит так:
 
@@ -186,13 +202,16 @@ getAmount()
 
 #### Local Variables
 
+{% code collapsedlinecount="10" %}
 ```java
 public PaymentResult process(Payment payment) {
     int attempt = 1;
     ...
 }
 ```
+{% endcode %}
 
+{% code collapsedlinecount="10" %}
 ```
 process() frame
 
@@ -203,6 +222,7 @@ Local Variables
 │ slot 2  │ attempt = 1          │
 └─────────┴──────────────────────┘
 ```
+{% endcode %}
 
 Причём `payment` — ссылка, сам объект находится в Heap.
 
@@ -214,24 +234,29 @@ Local Variables
 
 Например:
 
+{% code collapsedlinecount="10" %}
 ```java
 int sum(int a, int b) {
     int result = a + b;
     return result;
 }
 ```
+{% endcode %}
 
 Для instance-метода local variables будут:
 
+{% code collapsedlinecount="10" %}
 ```
 0 → this
 1 → a
 2 → b
 3 → result
 ```
+{% endcode %}
 
 Bytecode выполняет вычисление примерно следующим образом:
 
+{% code collapsedlinecount="10" %}
 ```
 iload_1  // берет a из local variables и кладет его в operand stack
 iload_2
@@ -240,23 +265,28 @@ istore_3
 iload_3
 ireturn
 ```
+{% endcode %}
 
 Допустим, `a = 2, b = 3`. После `iload_1` получаем:
 
+{% code collapsedlinecount="10" %}
 ```
 Operand Stack
 
 2
 ```
+{% endcode %}
 
 После `iload_2`:
 
+{% code collapsedlinecount="10" %}
 ```
 Operand Stack
 
 3
 2
 ```
+{% endcode %}
 
 `iadd` забирает два верхних значения — `3` и `2` — складывает их и кладёт в stack результат, т. е. `5`.
 
@@ -268,14 +298,17 @@ Operand Stack
 
 Рассмотрим ошибочную рекурсию:
 
+{% code collapsedlinecount="10" %}
 ```java
 void process() {
     process();
 }
 ```
+{% endcode %}
 
 Первый вызов `process()` создаёт frame, потом второй создает еще один и т. д.
 
+{% code collapsedlinecount="10" %}
 ```
 process()
 process()
@@ -283,6 +316,7 @@ process()
 process()
 ...
 ```
+{% endcode %}
 
 Frames продолжают накапливаться. В какой-то момент Stack больше не может вместить очередной frame и возникает `java.lang.StackOverflowError`.
 
@@ -292,15 +326,19 @@ Frames продолжают накапливаться. В какой-то мо�
 
 Для stack настройка только одна:
 
+{% code collapsedlinecount="10" %}
 ```bash
 -Xss
 ```
+{% endcode %}
 
 Например:
 
+{% code collapsedlinecount="10" %}
 ```bash
 -Xss1m
 ```
+{% endcode %}
 
 задаёт размер stack для каждого потока 1 Мб.
 
@@ -310,9 +348,11 @@ Frames продолжают накапливаться. В какой-то мо�
 
 При выполнении:
 
+{% code collapsedlinecount="10" %}
 ```java
 new Payment(...)
 ```
+{% endcode %}
 
 JVM должна уже знать:
 
@@ -329,6 +369,7 @@ JVM должна уже знать:
 
 В HotSpot здесь находятся **метаданные загруженных классов**. Например:
 
+{% code collapsedlinecount="10" %}
 ```
 Metaspace
 
@@ -343,26 +384,33 @@ Payment class metadata
 ├── runtime constant pool
 └── другая служебная class metadata
 ```
+{% endcode %}
 
 ***
 
 Metaspace находится **не в Java Heap**. Это особенно важно при ошибках памяти. Heap можно ограничить:
 
+{% code collapsedlinecount="10" %}
 ```bash
 -Xmx2g
 ```
+{% endcode %}
 
 Но Metaspace использует **другую область памяти**. Для него существует отдельное ограничение:
 
+{% code collapsedlinecount="10" %}
 ```bash
 -XX:MaxMetaspaceSize=256m
 ```
+{% endcode %}
 
-Если этот параметр не задан, HotSpot по умолчанию не устанавливает для Metaspace лимит, но все равно можно упереться в лимит доступной память процесса на конкретной ОС. Тогда получим:
+Если этот параметр не задан, HotSpot по умолчанию не устанавливает для Metaspace лимит, но все равно можно упереться в лимит доступной памяти процесса на конкретной ОС. Тогда получим:
 
+{% code collapsedlinecount="10" %}
 ```
 java.lang.OutOfMemoryError: Metaspace
 ```
+{% endcode %}
 
 ***
 
@@ -378,6 +426,7 @@ java.lang.OutOfMemoryError: Metaspace
 
 Все эти области сейчас знать не обязательно, но важно понимать: если мы выделили на все приложение 2 Гб (например, через Kubernetes), а в настройках JVM поставили `-Xmx1800m`, приложение может упасть из-за нехватки памяти. Казалось бы, Heap максимум 1.8 GB, значит 2 GB приложению хватит, но кроме Heap JVM должна разместить:
 
+{% code collapsedlinecount="10" %}
 ```
 Heap
 Metaspace
@@ -388,6 +437,7 @@ GC structures
 JVM native memory
 ...
 ```
+{% endcode %}
 
 И суммарно процесс может превысить лимит. Тогда система может убить процесс даже если лимит по Java Heap не превышен, и мы не увидели `OutOfMemoryError`.
 
@@ -397,36 +447,44 @@ JVM native memory
 
 1\. Загружается класс `PaymentService` ⇒ HotSpot создаёт class metadata:
 
+{% code collapsedlinecount="10" %}
 ```
 Metaspace
     ↓
 PaymentService metadata
 ```
+{% endcode %}
 
 2\. Создаём объект `Payment payment = new Payment(...)` ⇒ появляется:
 
+{% code collapsedlinecount="10" %}
 ```
 Heap
     ↓
 Payment object
 ```
+{% endcode %}
 
 А frame текущего метода содержит reference:
 
+{% code collapsedlinecount="10" %}
 ```
 Stack
     ↓
 payment → Payment object
 ```
+{% endcode %}
 
 3\. Вызываем метод `service.process(payment)` — появляется новый Stack Frame с локальными:
 
+{% code collapsedlinecount="10" %}
 ```
 this
 payment
 attempt
 ...
 ```
+{% endcode %}
 
 4\. Метод вызывает другой метод `calculateCommission(payment)` — появляется ещё один frame.
 
