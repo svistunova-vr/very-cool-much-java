@@ -17,8 +17,8 @@ description: Срок на изучение - 5 рабочих дней
 7. <mark style="background-color:green;">В чем разница между процессом и потоком? Как потоки разделяют ресурсы внутри одного процесса?</mark>
 8. <mark style="background-color:green;">Дайте определение многопоточности. Какие у нее преимущества и недостатки?</mark>
 9. <mark style="background-color:green;">В чем разница между асинхронными и параллельными вычислениями?</mark>
-10. Расскажите про класс `Thread`. Что представляет собой метод `run()`? В чем разница между `start()` и `run()`?
-11. Расскажите про интерфейс `Runnable`. Когда лучше использовать `Runnable`, а когда `Thread`?
+10. <mark style="background-color:green;">Расскажите про класс</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Thread`</mark><mark style="background-color:green;">. Что представляет собой метод</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`run()`</mark><mark style="background-color:green;">? В чем разница между</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`start()`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">и</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`run()`</mark><mark style="background-color:green;">?</mark>
+11. <mark style="background-color:green;">Расскажите про интерфейс</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Runnable`</mark><mark style="background-color:green;">. Когда лучше использовать</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Runnable`</mark><mark style="background-color:green;">, а когда</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Thread`</mark><mark style="background-color:green;">?</mark>
 12. Дайте определение критической секции. Что такое состояние гонки (race condition)? Приведите пример ситуации, в которой оно может возникнуть. Что такое атомарная операция?
 13. Что такое монитор в Java? Ключевое слово `synchronized`.
 14. Какие существуют варианты использования `synchronized` (instance-метод, `static`-метод, `synchronized`-блок)? Какой объект используется в качестве монитора в каждом случае?
@@ -34,7 +34,7 @@ description: Срок на изучение - 5 рабочих дней
 24. Расскажите про `ExecutorService`. Перечислите основные виды пулов потоков, доступные через `Executors` и приведите примеры, когда какой из них лучше использовать. Перечислите основные методы `ExecutorService`.
 25. Расскажите про интерфейсы `Callable` и `Future`. Чем они отличаются от `Runnable`?
 26. Что такое `ThreadLocal`? Какие проблемы могут возникнуть при использовании `ThreadLocal` в пулах потоков?
-27. Что такое `FutureTask`? Чем `CompletableFuture` отличается от `Future`? Методы `CompletableFuture`, создание цепочки обработки. Как комбинировать результаты нескольких `CompletableFuture`?&#x20;
+27. Что такое `FutureTask`? Чем `CompletableFuture` отличается от `Future`? Методы `CompletableFuture`, создание цепочки обработки. Как комбинировать результаты нескольких `CompletableFuture`?
 28. Как в `CompletableFuture` обрабатываются исключения?
 29. Опишите назначение и принцип работы `CountDownLatch`. Приведите пример его использования.
 30. Опишите назначение и принцип работы `CyclicBarrier`. Чем он отличается от `CountDownLatch`?
@@ -64,7 +64,7 @@ description: Срок на изучение - 5 рабочих дней
 * Реализуйте механизм приоритезации задач (высокий приоритет для клиентских операций, низкий для аналитических)
 * Реализуйте механизм безопасного обновления балансов клиентов
 * Защитите операции списания/зачисления средств от состояния гонки
-* Используйте различные механизмы синхронизации&#x20;
+* Используйте различные механизмы синхронизации
 * Создайте систему обработки заявок с использованием очередей
 * Реализуйте механизм равномерного распределения нагрузки между потоками-обработчиками
 
@@ -86,4 +86,8 @@ description: Срок на изучение - 5 рабочих дней
 
 {% content-ref url="osnovnye-terminy-mnogopotochnosti.md" %}
 [osnovnye-terminy-mnogopotochnosti.md](osnovnye-terminy-mnogopotochnosti.md)
+{% endcontent-ref %}
+
+{% content-ref url="thread-i-runnable.md" %}
+[thread-i-runnable.md](thread-i-runnable.md)
 {% endcontent-ref %}
