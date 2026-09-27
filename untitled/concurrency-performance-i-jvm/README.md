@@ -19,10 +19,10 @@ description: Срок на изучение - 5 рабочих дней
 9. <mark style="background-color:green;">В чем разница между асинхронными и параллельными вычислениями?</mark>
 10. <mark style="background-color:green;">Расскажите про класс</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Thread`</mark><mark style="background-color:green;">. Что представляет собой метод</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`run()`</mark><mark style="background-color:green;">? В чем разница между</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`start()`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">и</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`run()`</mark><mark style="background-color:green;">?</mark>
 11. <mark style="background-color:green;">Расскажите про интерфейс</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Runnable`</mark><mark style="background-color:green;">. Когда лучше использовать</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Runnable`</mark><mark style="background-color:green;">, а когда</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`Thread`</mark><mark style="background-color:green;">?</mark>
-12. Дайте определение критической секции. Что такое состояние гонки (race condition)? Приведите пример ситуации, в которой оно может возникнуть. Что такое атомарная операция?
-13. Что такое монитор в Java? Ключевое слово `synchronized`.
-14. Какие существуют варианты использования `synchronized` (instance-метод, `static`-метод, `synchronized`-блок)? Какой объект используется в качестве монитора в каждом случае?
-15. Какие операции не рекомендуется выполнять внутри `synchronized`-блока и почему?
+12. <mark style="background-color:green;">Дайте определение критической секции. Что такое состояние гонки (race condition)? Приведите пример ситуации, в которой оно может возникнуть. Что такое атомарная операция?</mark>
+13. <mark style="background-color:green;">Что такое монитор в Java? Ключевое слово</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`synchronized`</mark><mark style="background-color:green;">.</mark>
+14. <mark style="background-color:green;">Какие существуют варианты использования</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`synchronized`</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">(instance-метод,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`static`</mark><mark style="background-color:green;">-метод,</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`synchronized`</mark><mark style="background-color:green;">-блок)? Какой объект используется в качестве монитора в каждом случае?</mark>
+15. <mark style="background-color:green;">Какие операции не рекомендуется выполнять внутри</mark> <mark style="background-color:green;"></mark><mark style="background-color:green;">`synchronized`</mark><mark style="background-color:green;">-блока и почему?</mark>
 16. Для чего используются методы `wait()`, `notify()` и `notifyAll()`? Можно ли их вызывать вне `synchronized`-блока?
 17. Опишите состояния жизненного цикла потока: `NEW`, `RUNNABLE`, `BLOCKED`, `WAITING`, `TIMED_WAITING`, `TERMINATED`. Что вызывает переходы между ними? Как на состояние и выполнение потока влияют `sleep()`, `join()` и `interrupt()`?
 18. Какие проблемы решает ключевое слово `volatile`? Гарантирует ли `volatile` атомарность составных операций (например, `i++`)?
@@ -90,4 +90,8 @@ description: Срок на изучение - 5 рабочих дней
 
 {% content-ref url="thread-i-runnable.md" %}
 [thread-i-runnable.md](thread-i-runnable.md)
+{% endcontent-ref %}
+
+{% content-ref url="race-condition-i-synchronized.md" %}
+[race-condition-i-synchronized.md](race-condition-i-synchronized.md)
 {% endcontent-ref %}
