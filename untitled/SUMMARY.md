@@ -25,3 +25,4 @@
   * [Garbage Collection и утечки памяти](concurrency-performance-i-jvm/garbage-collection-i-utechki-pamyati.md)
   * [JIT-компилятор](concurrency-performance-i-jvm/jit-kompilyator.md)
   * [Основные термины многопоточности](concurrency-performance-i-jvm/osnovnye-terminy-mnogopotochnosti.md)
+  * [Thread и Runnable](concurrency-performance-i-jvm/thread-i-runnable.md)
