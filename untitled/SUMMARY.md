@@ -29,3 +29,4 @@
   * [Race condition и synchronized](concurrency-performance-i-jvm/race-condition-i-synchronized.md)
 * [Databases, SQL и персистентность](databases-sql-i-persistentnost/README.md)
   * [Основы реляционных БД](databases-sql-i-persistentnost/osnovy-relyacionnykh-bd.md)
+  * [Нормализация и денормализация](databases-sql-i-persistentnost/normalizaciya-i-denormalizaciya.md)

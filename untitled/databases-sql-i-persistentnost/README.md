@@ -8,8 +8,8 @@
 2. <mark style="background-color:green;">Что такое таблица, строка, столбец? Что такое первичный ключ (PK)? Какими свойствами он обладает?</mark>
 3. <mark style="background-color:green;">Что такое внешний ключ (FK)? Зачем он нужен?</mark>
 4. <mark style="background-color:green;">Какие бывают типы связей между таблицами: 1:1, 1:M, M:M? Как они реализуются?</mark>
-5. Что такое нормализация базы данных и зачем она нужна? Первая, вторая и третья нормальные формы.
-6. Что такое денормализация и когда её применяют?
+5. <mark style="background-color:green;">Что такое нормализация базы данных и зачем она нужна? Первая, вторая и третья нормальные формы.</mark>
+6. <mark style="background-color:green;">Что такое денормализация и когда её применяют?</mark>
 7. Что такое SQL?
    * Что делает `SELECT`? Как выбрать все или только определенные столбцы из таблицы?
    * Для чего используется `WHERE`? Как работают логические операторы `AND`, `OR`, `NOT`?
@@ -107,4 +107,8 @@ _Для хранения данных о клиентах, продуктах, �
 
 {% content-ref url="osnovy-relyacionnykh-bd.md" %}
 [osnovy-relyacionnykh-bd.md](osnovy-relyacionnykh-bd.md)
+{% endcontent-ref %}
+
+{% content-ref url="normalizaciya-i-denormalizaciya.md" %}
+[normalizaciya-i-denormalizaciya.md](normalizaciya-i-denormalizaciya.md)
 {% endcontent-ref %}
