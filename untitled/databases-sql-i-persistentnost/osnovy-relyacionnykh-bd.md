@@ -24,7 +24,7 @@ List<Order> orders;
 
 > **База данных (БД)** — организованная совокупность данных, предназначенная для долговременного хранения и использования.
 
-Например, у интернет-магазина может существовать база данных `shop`, в которой данные  хранятся в таблицах:
+Например, у интернет-магазина может существовать база данных `shop`, в которой данные хранятся в таблицах:
 
 * `users`
 * `orders`
@@ -39,15 +39,15 @@ List<Order> orders;
 
 Например, PostgreSQL, MySQL, Oracle — это СУБД. Если мы используем PostgreSQL, упрощённо взаимодействие выглядит так:
 
-<figure><img src="../.gitbook/assets/image (34).png" alt="" width="540"><figcaption></figcaption></figure>
+<figure><img src="https://819230696-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fd8RpbzBTi02qD2ZNgN27%2Fuploads%2F7VE8rK6RpFeWCz1YtVmW%2Fimage.png?alt=media&#x26;token=b9e10b82-7b61-4541-91fe-55117b49c591" alt="" width="540"><figcaption></figcaption></figure>
 
-Поэтому фраза "У нас база PostgreSQL" в разговорной речи встречается постоянно, но технически это не правильно: **PostgreSQL — СУБД**, а конкретная база, которой она управляет, например, `shop` — **БД**.
+Поэтому фраза "У нас база PostgreSQL" в разговорной речи встречается постоянно, но технически это неправильно: **PostgreSQL — СУБД**, а конкретная база, которой она управляет, например, `shop` — **БД**.
 
 ***
 
 ## Реляционная база данных
 
-В основном при обсуждении БД речь  идет о **реляционных базах данных**, например PostgreSQL.
+В основном при обсуждении БД речь идет о **реляционных базах данных**, например PostgreSQL.
 
 Главная идея реляционной модели: данные организованы в **таблицы**, а между таблицами можно задавать **связи**.
 
@@ -219,7 +219,7 @@ id = 1
 
 и потом он не меняется в течение всего срока жизни строки.
 
-Неизменяемость PK — хорошая практика, но технически это не обязательное требование для первичного ключа. Обязательные — только уникальность и отстутствие `NULL`.
+Неизменяемость PK — хорошая практика, но технически это не обязательное требование для первичного ключа. Обязательные — только уникальность и отсутствие `NULL`.
 
 ***
 
@@ -235,7 +235,7 @@ id = 1
 
 `orders.user_id = 1` — это ссылка на строку в таблице `users` с `id = 1`.
 
-<figure><img src="../.gitbook/assets/image (28).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://819230696-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fd8RpbzBTi02qD2ZNgN27%2Fuploads%2FQVS7y9Um4SwXKEqjwgd5%2Fimage.png?alt=media&#x26;token=a97fa69b-9f47-4029-a0d6-380c6051815e" alt=""><figcaption></figcaption></figure>
 
 > **Внешний ключ**, или Foreign Key (`FK`) — столбец или набор столбцов одной таблицы, который ссылается на ключ другой таблицы и позволяет СУБД контролировать целостность этой связи.
 
@@ -251,7 +251,7 @@ id = 1
 
 <table data-header-hidden><thead><tr><th width="201"></th><th width="224"></th></tr></thead><tbody><tr><td><code>id</code></td><td><code>user_id</code></td></tr><tr><td>104</td><td>999</td></tr></tbody></table>
 
-Хотя пользователя c `users.id = 999` **вообще не существует**. Тогда в данных появилась бы "битая" ссылка. Приложение считало бы, что у заказа есть владелец, но найти его при этом невозможно. Это **нарушение целостности данных**.
+Хотя пользователя с `users.id = 999` **вообще не существует**. Тогда в данных появилась бы "битая" ссылка. Приложение считало бы, что у заказа есть владелец, но найти его при этом невозможно. Это **нарушение целостности данных**.
 
 Если же `orders.user_id` является `FOREIGN KEY`, при попытке сохранить заказ с `user_id = 999` СУБД проверит, точно ли существует строка в таблице `users` с `id = 999`. Если нет, сохранение будет прервано с ошибкой.
 
@@ -277,7 +277,7 @@ id = 1
 
 Один пользователь может оформить много заказов, но каждый конкретный заказ принадлежит одному пользователю:
 
-<figure><img src="../.gitbook/assets/image (29).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://819230696-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fd8RpbzBTi02qD2ZNgN27%2Fuploads%2FygEvLSQJA9VdrROdSBnq%2Fimage.png?alt=media&#x26;token=9d6eae4d-4418-41ad-b621-9e36814c6100" alt=""><figcaption></figcaption></figure>
 
 Это **один ко многим — `1:M`. FK хранится на стороне `M`**.
 
@@ -290,7 +290,7 @@ user #1
 order_id = 101, 102, 103, ...
 ```
 
-Это не удобно как с точки зрения пользователя, так и с точки зрения СУБД, которая должна проверять Foreign Key ограничения. Поэтому принятый способ:
+Это неудобно как с точки зрения пользователя, так и с точки зрения СУБД, которая должна проверять Foreign Key ограничения. Поэтому принятый способ:
 
 ```
 orders
@@ -329,7 +329,7 @@ Order #318
 
 Это связь **многие ко многим — `M:M`.**
 
-Здесь одного FK уже недостаточно. Нельзя сделать просто `orders.product_id`, потому что у заказа может быть много товаров. Так же нельзя сделать и только `products.order_id`, потому что один товар может входить в много заказов. Поэтому **связь выносится в отдельную таблицу**.
+Здесь одного FK уже недостаточно. Нельзя сделать просто `orders.product_id`, потому что у заказа может быть много товаров. Также нельзя сделать и только `products.order_id`, потому что один товар может входить в много заказов. Поэтому **связь выносится в отдельную таблицу**.
 
 Например, `order_items`:
 
@@ -349,7 +349,7 @@ order_id | product_id
 * `order_items.order_id` -> `orders.id`
 * `order_items.product_id` -> `products.id`
 
-<figure><img src="../.gitbook/assets/image (30).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://819230696-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fd8RpbzBTi02qD2ZNgN27%2Fuploads%2FQyOC90Tk4JKrnzqCsN8n%2Fimage.png?alt=media&#x26;token=811ef747-52c7-4de4-95ff-e26473d5b0ef" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -388,11 +388,11 @@ PRIMARY KEY (order_id, product_id)
 
 У одного пользователя может быть только один профиль. И один профиль принадлежит только одному пользователю. Это связь **один к одному — `1:1`.**
 
-<figure><img src="../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://819230696-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fd8RpbzBTi02qD2ZNgN27%2Fuploads%2FUkbURnLK0NovhqsMXSXS%2Fimage.png?alt=media&#x26;token=42e7c700-2a61-4017-975c-f8dbda5d69ee" alt=""><figcaption></figcaption></figure>
 
 Просто создать FK (`user_profiles.user_id` -> `users.id`) недостаточно, для связи 1:1 этот FK должен быть еще и `UNIQUE`:
 
-<figure><img src="../.gitbook/assets/image (32).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://819230696-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fd8RpbzBTi02qD2ZNgN27%2Fuploads%2F4POJBkpXjdhGpO9V80wy%2Fimage.png?alt=media&#x26;token=f5d2d164-b6c7-473d-bdca-980f1124f727" alt=""><figcaption></figcaption></figure>
 
 Один пользователь имеет **не более одного** профиля означает, что профиль может быть еще не создан. Обязательность существования записи с обеих сторон — отдельный вопрос, для связи 1:1 это не обязательно.
 
