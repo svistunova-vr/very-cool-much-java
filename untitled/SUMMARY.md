@@ -27,4 +27,5 @@
   * [Основные термины многопоточности](concurrency-performance-i-jvm/osnovnye-terminy-mnogopotochnosti.md)
   * [Thread и Runnable](concurrency-performance-i-jvm/thread-i-runnable.md)
   * [Race condition и synchronized](concurrency-performance-i-jvm/race-condition-i-synchronized.md)
-* [Databases, SQL и персистентность](databases-sql-i-persistentnost.md)
+* [Databases, SQL и персистентность](databases-sql-i-persistentnost/README.md)
+  * [Основы реляционных БД](databases-sql-i-persistentnost/osnovy-relyacionnykh-bd.md)
