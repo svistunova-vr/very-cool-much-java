@@ -105,3 +105,6 @@ _Для хранения данных о клиентах, продуктах, �
 
 ***
 
+{% content-ref url="osnovy-relyacionnykh-bd.md" %}
+[osnovy-relyacionnykh-bd.md](osnovy-relyacionnykh-bd.md)
+{% endcontent-ref %}
