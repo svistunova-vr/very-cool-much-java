@@ -38,7 +38,7 @@ cache.put(payment.getId(), result);
 
 Упрощённо Heap можно представить так:
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Young Generation** предназначен для молодых объектов. Обычно новые объекты сначала создаются именно здесь.
 
@@ -64,7 +64,7 @@ BankResponse response = new BankResponse(...);
 
 Упрощённо получаем:
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 Приложение продолжает работать, объекты создаются, Eden постепенно заполняется. В какой-то момент JVM нужно освободить в Young Generation место для новых объектов. Происходит сборка молодого поколения — **Young GC** (часто можно встретить старое название **Minor GC**).
 
