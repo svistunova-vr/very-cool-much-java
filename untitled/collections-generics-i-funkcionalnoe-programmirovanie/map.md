@@ -33,7 +33,7 @@ for (Order order : orders) {
 
 `HashMap` использует **хеш-таблицу**. Под капотом обычный массив, его ячейки называют **бакетами.** `HashMap` по ключу быстро определяет, в каком бакете искать, и затем проверяет записи только в этой ячейке.
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
 Допустим, у массива 8 ячеек с индексами:
 
@@ -158,7 +158,7 @@ key.hashCode();
 
 Если класс не переопределяет его, используется реализация, унаследованная от `Object`:
 
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
 `native` означает, что Java сама не реализует этот метод, а использует реализацию на каком-то другом языке, более низкоуровневом, типа C или C++ — какая конкретно реализация используется, зависит от версии JVM, ОС и других факторов. Главное — `native` методы обычно очень быстрые, быстрее, чем если бы они были реализованы на самой Java.
 

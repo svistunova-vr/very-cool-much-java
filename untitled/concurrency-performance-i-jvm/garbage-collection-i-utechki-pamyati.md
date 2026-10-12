@@ -38,7 +38,7 @@ cache.put(payment.getId(), result);
 
 Упрощённо Heap можно представить так:
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 **Young Generation** предназначен для молодых объектов. Обычно новые объекты сначала создаются именно здесь.
 
@@ -312,7 +312,7 @@ cache.remove(paymentId);
 
 Для понимания общего алгоритма это хорошая схема, но современный сборщик мусора G1 физически устроен иначе. Он разбивает Heap на множество одинаковых regions:
 
-<figure><img src="../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
 
 > То есть Young и Old у G1 остаются, но это уже не обязательно несколько больших непрерывных участков памяти.
 

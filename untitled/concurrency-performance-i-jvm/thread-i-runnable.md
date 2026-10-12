@@ -99,10 +99,10 @@ PaymentThread thread = new PaymentThread();
 
 *   Если вызвать `thread.run()`, это обычный вызов Java-метода. **Никакого нового потока JVM не запускает.**
 
-    <figure><img src="../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
 *   Если вызвать `start()`, JVM понимает, что этот `Thread` нужно запустить как **отдельный поток выполнения**. А уже сама JVM запускает выполнение `run()` этим новым потоком.
 
-    <figure><img src="../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
 
 То есть `thread.run()` означает "выполни метод `run()` **прямо сейчас в текущем потоке**", а `thread.start()` — "запусти **новый поток**, который затем выполнит `run()`".
 

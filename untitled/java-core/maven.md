@@ -30,7 +30,7 @@ javac Main.java
 
 После этого появится новый файл `Main.class`. `.class` содержит **Java bytecode — байткод**. Это уже не исходный код, а инструкции для JVM на более низкоуровневом языке.
 
-Если код нарушает правила Java (например, `int age = "Anna"`), ошибка обнаружится еще на этапе компиляции, и код не будет скомпилирован, пока ошибку не исправить.&#x20;
+Если код нарушает правила Java (например, `int age = "Anna"`), ошибка обнаружится еще на этапе компиляции, и код не будет скомпилирован, пока ошибку не исправить.
 
 ```java
 Animal animal = new Cat();
@@ -413,7 +413,7 @@ MAJOR.MINOR.PATCH
 
 ***
 
-Часто бывает, что несколько связанных библиотек обновляются синхронно, и для них нужно прописывать одну и ту же версию:&#x20;
+Часто бывает, что несколько связанных библиотек обновляются синхронно, и для них нужно прописывать одну и ту же версию:
 
 ```xml
 <dependency>
@@ -485,7 +485,7 @@ Library A
 Library B
 ```
 
-Наш проект напрямую подключает только `Library A`, но для работы `A` нужна `B`. Это называется **транзитивная зависимость**. Maven обычно сам скачает и `A` и `B`.&#x20;
+Наш проект напрямую подключает только `Library A`, но для работы `A` нужна `B`. Это называется **транзитивная зависимость**. Maven обычно сам скачает и `A` и `B`.
 
 Это одна из важных причин, почему вручную управлять `.jar`-файлами неудобно — пришлось бы искать транзитивные зависимости тоже.
 
@@ -613,7 +613,7 @@ mvn package -Pprod
 
 У Maven 3 встроенных lifecycle: `clean`, `build` (по умолчанию) и `site`.
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 Каждый lifecycle состоит из **phases — фаз**. Например, в основном lifecycle есть:
 
@@ -819,7 +819,7 @@ com.victory:common-utils:1.0.0
 
 Делаем `mvn site` — Maven создает HTML-страницы с информацией о проекте (то же, что написано у вас в `pom.xml`) и сохраняет в `target/site/`.
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
 Почти никогда не используется, запомнить только для ответа на вопрос "какие есть жизненные циклы в Maven" на собеседовании.
 
@@ -858,7 +858,7 @@ plugin:goal
 
 Например, чтобы сделать автоматическое форматирование через plugin Spotless, который упоминали выше:
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 ***
 

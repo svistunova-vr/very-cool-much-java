@@ -39,7 +39,7 @@ processedPayments = 10
 
 Два потока одновременно обработали по одному платежу. Ожидаем `12`. Но выполнение может быть такое:
 
-<figure><img src="../.gitbook/assets/image (24).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (25).png" alt="" width="563"><figcaption></figcaption></figure>
 
 В результате `processedPayments = 11`, хотя было обработано два платежа. Один инкремент потерялся.
 
@@ -53,7 +53,7 @@ processedPayments = 10
 
 В примере выше возможен вариант, когда выполнение даст ожидаемый результат:
 
-<figure><img src="../.gitbook/assets/image (25).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (26).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Результат:
 
@@ -173,9 +173,9 @@ logResult()
 
 В Java для этого можно использовать **монитор**. Упрощённо монитор можно представить как замок, связанный с объектом. Поток перед входом в защищённый участок должен получить этот монитор.
 
-<figure><img src="../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
-
 <figure><img src="../.gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (28).png" alt=""><figcaption></figcaption></figure>
 
 Важно, что потоки должны использовать **один и тот же монитор**. Если Thread 1 синхронизируется на одном объекте, а Thread 2 на другом, они друг друга не блокируют.
 

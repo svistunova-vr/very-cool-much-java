@@ -718,7 +718,7 @@ visit_services.service_id → services.id
 
 В итоге:
 
-<figure><img src="../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (36).png" alt=""><figcaption></figcaption></figure>
 
 </details>
 

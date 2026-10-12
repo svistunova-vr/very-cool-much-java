@@ -20,7 +20,7 @@ JVM описывается спецификацией от разработчи�
 
 Упрощенно память JVM можно представить так:
 
-<figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
 
 **Heap и данные классов используются всеми потоками совместно, а Stack у каждого потока свой.**
 
@@ -152,17 +152,17 @@ java.lang.OutOfMemoryError: Java heap space
 
 В IntelliJ эти параметры можно настроить так:
 
-<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
 
 Далее Modify Options:
 
-<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
-
 <figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
 
 Появится поле ввода, в нем указываем нужные параметры:
 
-<figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -188,11 +188,11 @@ getAmount()
 
 Пока выполняется `getAmount()`, Stack выглядит так:
 
-<figure><img src="../.gitbook/assets/image (17).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (18).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Каждый вызов метода создаёт новый **frame**. Когда `getAmount()` заканчивается, его frame удаляется, и текущим снова становится `calculateCommission()`:
 
-<figure><img src="../.gitbook/assets/image (18).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (19).png" alt="" width="563"><figcaption></figcaption></figure>
 
 После его завершения удаляется его frame и управление возвращается в `process()`, и т. д.
 

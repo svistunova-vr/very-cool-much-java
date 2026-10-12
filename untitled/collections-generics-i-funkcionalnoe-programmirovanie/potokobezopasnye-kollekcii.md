@@ -73,11 +73,11 @@ EMAIL
 
 1.  Перед началом цикла итератор находит по ссылке старый массив с `PUSH` и `EMAIL`.
 
-    <figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
 2. После вывода `PUSH` мы изменяем сам список, но при этом создается копия массива в другом участке памяти, и изменения происходят в ней.
 3.  Ссылка в коллекции `channels` переключается на новый массив, но итератор за этим не следит, он продолжает работать со старым массивом по ссылке, которая была активна на момент начала цикла.
 
-    <figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
 4. Итератор продолжает обход своего старого массива, который не изменился, поэтому выводит `EMAIL`.
 5. Последний `println()` смотрит уже на текущую ссылку в коллекции и находит по ней уже новый массив: `PUSH` и `SMS`.
 
@@ -165,7 +165,7 @@ if (!assignedCouriers.containsKey(orderId)) {
 
 На первый взгляд, код выглядит правильно, но на самом деле возможна проблема:
 
-<figure><img src="../.gitbook/assets/image (8).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Оба курьера увидели, что операция успешно выполнилась, и хотят забрать заказ, но в `Map` остался только Олег. Проблема в том, что **проверка и добавление — два отдельных действия**. Между ними другой поток успевает выполнить свой код.
 

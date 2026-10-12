@@ -82,7 +82,7 @@ System.out.println(order.getId());
 
 Если заглянуть в интерфейс `List`, увидим `List<E>`:
 
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
 
 Буква `E` — **параметр для типа данных**. Например, при использовании `List<Order>` вместо `E` подставляется конкретный тип `Order`.
 
