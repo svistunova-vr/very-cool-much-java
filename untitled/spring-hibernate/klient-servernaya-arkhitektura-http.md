@@ -202,9 +202,9 @@ Content-Type: application/json
 }
 ```
 
-Смысл `PUT` — привести ресурс по указанному адресу к состоянию, описанному в запросе. Если  ранее у пользователя не было сохраненного адреса, создается новый. Если был, его данные полностью меняются на данные из запроса.
+Смысл `PUT` — привести ресурс по указанному адресу к состоянию, описанному в запросе. Если ранее у пользователя не было сохраненного адреса, создается новый. Если был, его данные полностью меняются на данные из запроса.
 
-Важно учитывать, что в `PUT` должен передаваться объект полностью. Например, если мы хотим поменять только номер квартиры, и оставить без изменений все остальное, нельзя написать просто
+Важно учитывать, что в `PUT` должен передаваться объект полностью. Например, если мы хотим поменять только номер квартиры и оставить без изменений все остальное, нельзя написать просто
 
 ```shellscript
 {
@@ -262,7 +262,7 @@ HTTP/1.1 204 No Content
 
 `204 No Content` означает, что запрос успешно выполнен, но тело ответа не требуется.
 
-`DELETE` не обязательно означает физическое удаление строки из БД: сервер может реализовать логическое удаление (так же называют мягкое удаление) — оставить строку, но пометить ее как неактивную (например, `is_active=false` или `status=DELETED`).
+`DELETE` не обязательно означает физическое удаление строки из БД: сервер может реализовать логическое удаление (также называют мягкое удаление) — оставить строку, но пометить ее как неактивную (например, `is_active=false` или `status=DELETED`).
 
 ***
 
@@ -277,7 +277,7 @@ HTTP/1.1 204 No Content
 
 > **Идемпотентность** — свойство операции, при котором многократное выполнение одного и того же запроса имеет тот же эффект на состояние системы, что и однократное выполнение.
 
-Например, пользователь добавил комментарий к заказу, "Позвонить перед доставкой". Если повторить одну и ту же операцию с одними и теми же данными несколько раз, комментарий к заказу останется тем же. Это идемпотентная операция.
+Например, пользователь добавил комментарий к заказу: "Позвонить перед доставкой". Если повторить одну и ту же операцию с одними и теми же данными несколько раз, комментарий к заказу останется тем же. Это идемпотентная операция.
 
 Другой пример — пользователь нажал на кнопку "добавить" в карточке товара "хлеб". Если он 5 раз нажмет на эту кнопку, у него в корзине будет 5 булок хлеба. Это не идемпотентная операция.
 
@@ -291,7 +291,7 @@ HTTP/1.1 204 No Content
 | `PATCH`   | Не гарантируется   |
 | `DELETE`  | Да                 |
 
-`POST` по желанию разработчика можно реализовать идемпотентным, но это не гарантируется самим методом. Не зная реализации, мы не можем рассчитывать на идемпотентность. А вот PUT всего обязан быть идемпотентным.
+`POST` по желанию разработчика можно реализовать идемпотентным, но это не гарантируется самим методом. Не зная реализации, мы не можем рассчитывать на идемпотентность. А вот PUT всегда обязан быть идемпотентным.
 
 > :exclamation:**Идемпотентность ≠ всегда одинаковый ответ.**
 >
@@ -307,7 +307,7 @@ HTTP/1.1 204 No Content
 
 В контексте HTTP идемпотентность важна при сетевых сбоях.
 
-Если клиент отправил запрос, сервер его **выполнил**, но соединение оборвалось до того, как клиент получил ответ `"OK"`, он может попытаться выполнить его еще раз. В таком случае не идемпотентная операция опасна — ее повтор может вызвать повторное списание денег за один и тот же заказ, дубль сообщения в чате и т. д.
+Если клиент отправил запрос, сервер его **выполнил**, но соединение оборвалось до того, как клиент получил ответ `"OK"`, он может попытаться выполнить его еще раз. В таком случае неидемпотентная операция опасна — ее повтор может вызвать повторное списание денег за один и тот же заказ, дубль сообщения в чате и т. д.
 
 ***
 
@@ -317,36 +317,36 @@ HTTP/1.1 204 No Content
 
 <table data-header-hidden><thead><tr><th width="148"></th><th></th></tr></thead><tbody><tr><td><strong>Класс</strong></td><td><strong>Значение</strong></td></tr><tr><td><code>1xx</code></td><td>Информационные ответы, запрос ещё обрабатывается</td></tr><tr><td><code>2xx</code></td><td>Успешное выполнение</td></tr><tr><td><code>3xx</code></td><td>Перенаправление или необходимость дополнительных действий для получения ресурса</td></tr><tr><td><code>4xx</code></td><td>Ошибка со стороны клиента — например, неправильный формат поля в запросе</td></tr><tr><td><code>5xx</code></td><td>Ошибка со стороны сервера — например, неожиданно вылетело исключение в коде</td></tr></tbody></table>
 
-Самые часто встречающиеся коды:
+Наиболее часто встречающиеся коды:
 
 * `200 OK` — запрос успешно выполнен.\
   Например, успешно получили заказ:\
-  <mark style="color:green;">`GET /api/orders/101`</mark> <mark style="color:green;"></mark><mark style="color:green;">→</mark> <mark style="color:green;"></mark><mark style="color:green;">`200 OK`</mark><mark style="color:green;">, тело ответа</mark> <mark style="color:green;"></mark><mark style="color:green;">`{"id":101,"status":"COOKING","total":1500}`</mark>
+  <mark style="color:green;">`GET /api/orders/101`</mark> <mark style="color:green;">→</mark> <mark style="color:green;">`200 OK`</mark><mark style="color:green;">, тело ответа</mark> <mark style="color:green;">`{"id":101,"status":"COOKING","total":1500}`</mark>
 * `201 Created` — успешно создан новый ресурс.\
   Например, успешно создан новый заказ:\
-  <mark style="color:green;">`POST /api/orders`</mark><mark style="color:green;">, в теле данные нового заказа →</mark> <mark style="color:green;"></mark><mark style="color:green;">`201 Created`</mark> <mark style="color:green;"></mark><mark style="color:green;">с телом</mark> <mark style="color:green;"></mark><mark style="color:green;">`{"id":105,"status":"NEW"}`</mark>
+  <mark style="color:green;">`POST /api/orders`</mark><mark style="color:green;">, в теле данные нового заказа →</mark> <mark style="color:green;">`201 Created`</mark> <mark style="color:green;">с телом</mark> <mark style="color:green;">`{"id":105,"status":"NEW"}`</mark>
 * `204 No Content` — запрос успешно выполнен, но в ответе нечего показать в теле.\
   Например, после удаления товара из корзины:\
-  <mark style="color:green;">`DELETE /api/cart/items/20`</mark> <mark style="color:green;"></mark><mark style="color:green;">→</mark> <mark style="color:green;"></mark><mark style="color:green;">`204 No Content`</mark><mark style="color:green;">, тело ответа отсутствует</mark>
+  <mark style="color:green;">`DELETE /api/cart/items/20`</mark> <mark style="color:green;">→</mark> <mark style="color:green;">`204 No Content`</mark><mark style="color:green;">, тело ответа отсутствует</mark>
 * `301 Moved Permanently` — ресурс постоянно перенесён на другой адрес.\
   Например, раньше меню было доступно по endpoint-у `/api/restaurants/5/menu`, но в процессе обновления приложения адрес поменяли на `/api/menus/5`.\
-  Если устаревший клиент отправит запрос <mark style="color:green;">`GET /api/restaurants/5/menu`</mark><mark style="color:green;">, сервер может ответить</mark> <mark style="color:green;"></mark><mark style="color:green;">`301 Moved Permanently`</mark> <mark style="color:green;"></mark><mark style="color:green;">без тела с заголовком</mark> <mark style="color:green;"></mark><mark style="color:green;">`Location: /api/menus/5`</mark>, и браузер автоматически откроет новый адрес из заголовка (сделает еще один запрос по новому адресу, на который уже получит `200 OK` с телом) — клиент даже не заметит ошибки.
+  Если устаревший клиент отправит запрос <mark style="color:green;">`GET /api/restaurants/5/menu`</mark><mark style="color:green;">, сервер может ответить</mark> <mark style="color:green;">`301 Moved Permanently`</mark> <mark style="color:green;">без тела с заголовком</mark> <mark style="color:green;">`Location: /api/menus/5`</mark>, и браузер автоматически откроет новый адрес из заголовка (сделает еще один запрос по новому адресу, на который уже получит `200 OK` с телом) — клиент даже не заметит ошибки.
 * `302 Found` — временное перенаправление.\
   То же самое, что и `301`, но в случае `301` клиент может считать, что адрес теперь всегда будет такой, и может смело поменять свой запрос на новое API, а в случае `302` адрес поменялся временно и потом может поменяться обратно, поэтому менять запрос со стороны клиента не нужно.
 * `400 Bad Request` — сервер не может обработать запрос из-за ошибки клиента, например некорректного формата поля.\
-  <mark style="color:green;">`POST /api/orders`</mark> <mark style="color:green;"></mark><mark style="color:green;">с телом</mark> <mark style="color:green;"></mark><mark style="color:green;">`{"quantity":-2}`</mark> <mark style="color:green;"></mark><mark style="color:green;">→</mark> <mark style="color:green;"></mark><mark style="color:green;">`400 Bad Request`</mark><mark style="color:green;">, тело ответа</mark> <mark style="color:green;"></mark><mark style="color:green;">`{"message":"Количество товара должно быть больше 0"}`</mark>
+  <mark style="color:green;">`POST /api/orders`</mark> <mark style="color:green;">с телом</mark> <mark style="color:green;">`{"quantity":-2}`</mark> <mark style="color:green;">→</mark> <mark style="color:green;">`400 Bad Request`</mark><mark style="color:green;">, тело ответа</mark> <mark style="color:green;">`{"message":"Количество товара должно быть больше 0"}`</mark>
 * `401 Unauthorized` — для выполнения запроса не хватает данных аутентификации.\
-  <mark style="color:green;">Например клиент в запросе</mark> <mark style="color:green;"></mark><mark style="color:green;">`GET /api/orders/101`</mark> <mark style="color:green;"></mark><mark style="color:green;">не передал токен пользователя.</mark>
+  <mark style="color:green;">Например, клиент в запросе</mark> <mark style="color:green;">`GET /api/orders/101`</mark> <mark style="color:green;">не передал токен пользователя.</mark>
 * `403 Forbidden` — данные для аутентификации есть, но по ним сервер определил, что у пользователя нет доступа к запрашиваемым данным.\
   Например, пользователь пытается открыть чужой заказ, или у него роль обычного покупателя, а он пытается выполнить запрос на добавление нового блюда в меню ресторана.
 *   `404 Not Found` — запрошенный ресурс не найден.
 
-    <mark style="color:green;">`GET /api/orders/999`</mark> <mark style="color:green;"></mark><mark style="color:green;">→</mark> <mark style="color:green;"></mark><mark style="color:green;">`404 Not Found`</mark><mark style="color:green;">, если заказа с таким ID нет</mark>.
+    <mark style="color:green;">`GET /api/orders/999`</mark> <mark style="color:green;">→</mark> <mark style="color:green;">`404 Not Found`</mark><mark style="color:green;">, если заказа с таким ID нет</mark>.
 * `405 Method Not Allowed` — HTTP-метод не поддерживается для данного ресурса.\
   `POST /api/orders/101` → `405 Method Not Allowed`, если `POST` поддерживается только для `/api/orders`, а для `/api/orders/101` доступны только `GET` и `PATCH`.
 * `409 Conflict` — запрос конфликтует с текущим состоянием ресурса.\
   Например, клиент уже отменил заказ, а ресторан пытается начать его готовить:\
-  <mark style="color:green;">`PATCH /api/orders/101`</mark> <mark style="color:green;"></mark><mark style="color:green;">с телом</mark> <mark style="color:green;"></mark><mark style="color:green;">`{"status":"COOKING"}`</mark> <mark style="color:green;"></mark><mark style="color:green;">→</mark> <mark style="color:green;"></mark><mark style="color:green;">`409 Conflict`</mark><mark style="color:green;">.</mark>
+  <mark style="color:green;">`PATCH /api/orders/101`</mark> <mark style="color:green;">с телом</mark> <mark style="color:green;">`{"status":"COOKING"}`</mark> <mark style="color:green;">→</mark> <mark style="color:green;">`409 Conflict`</mark><mark style="color:green;">.</mark>
 * `429 Too Many Requests` — клиент отправляет слишком много запросов за период времени.
 * `500 Internal Server Error` — непредвиденная ошибка со стороны сервера при обработке запроса. Например, получили `NullPointerException`, который не предусмотрели при разработке.
 * `503 Service Unavailable` — сервис временно недоступен, например из-за перегрузки или выпуска обновления.
@@ -383,7 +383,7 @@ HTTP/1.1 204 No Content
 
 <summary>Ответ</summary>
 
-Пользователь передал токен для аутентификации, но у него не хватает прав для выполнения действия — можно вернуть `403 Forbidden`. Еще подойдет `404 Not Found` — мы не нашли событие с `id=27` среди событий этого пользователя.&#x20;
+Пользователь передал токен для аутентификации, но у него не хватает прав для выполнения действия — можно вернуть `403 Forbidden`. Еще подойдет `404 Not Found` — мы не нашли событие с `id=27` среди событий этого пользователя.
 
 </details>
 
