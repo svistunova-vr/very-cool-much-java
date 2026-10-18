@@ -32,3 +32,4 @@
   * [Нормализация и денормализация](databases-sql-i-persistentnost/normalizaciya-i-denormalizaciya.md)
 * [Spring, Hibernate](spring-hibernate/README.md)
   * [Клиент-серверная архитектура, HTTP](spring-hibernate/klient-servernaya-arkhitektura-http.md)
+  * [Основы Spring (IoC, DI, бины)](spring-hibernate/osnovy-spring-ioc-di-biny.md)
