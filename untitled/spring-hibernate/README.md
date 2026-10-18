@@ -10,17 +10,17 @@
 4. Что такое <mark style="background-color:blue;">REST и RESTful API</mark>? Требования и преимущества REST-архитектуры. Примеры CRUD-операций в REST.
 5. <mark style="background-color:green;">Что такое Spring?</mark> <mark style="color:cyan;background-color:$success;">Принцип IoC и Dependency Injection (DI)</mark><mark style="color:cyan;">.</mark>
 6. <mark style="background-color:green;">Что такое Spring Bean?</mark> <mark style="color:cyan;background-color:$success;">Способы создания бинов.</mark>
-7. <mark style="color:cyan;background-color:$success;">Способы внедрения зависимостей</mark> <mark style="background-color:green;">(</mark><mark style="color:cyan;background-color:$success;">конструктор</mark><mark style="background-color:green;">, сеттер, поле). Что такое циклические зависимости и как их исправить?</mark> <mark style="color:cyan;background-color:$success;">Что делать, если для внедрения подходят несколько бинов?</mark> <mark style="color:cyan;background-color:$success;"></mark><mark style="color:cyan;background-color:$success;">`@Primary`</mark><mark style="color:cyan;background-color:$success;">,</mark> <mark style="color:cyan;background-color:$success;"></mark><mark style="color:cyan;background-color:$success;">`@Qualifier`</mark>
+7. <mark style="color:cyan;background-color:$success;">Способы внедрения зависимостей</mark> <mark style="background-color:green;">(</mark><mark style="color:cyan;background-color:$success;">конструктор</mark><mark style="background-color:green;">, сеттер, поле). Что такое циклические зависимости и как их исправить?</mark> <mark style="color:cyan;background-color:$success;">Что делать, если для внедрения подходят несколько бинов?</mark> <mark style="color:cyan;background-color:$success;">`@Primary`</mark><mark style="color:cyan;background-color:$success;">,</mark> <mark style="color:cyan;background-color:$success;">`@Qualifier`</mark>
 8. Что такое `ApplicationContext` в Spring? Его основные функции. Чем `ApplicationContext` отличается от `BeanFactory`? Что такое `FactoryBean`? Какие существуют реализации `ApplicationContext` (`ClassPathXmlApplicationContext`, `AnnotationConfigApplicationContext` и др.)?
 9. <mark style="background-color:blue;">Как происходит инициализация контекста?</mark> Для чего используется `BeanFactoryPostProcessor`? Иерархия контекстов.
 10. <mark style="background-color:blue;">Жизненный цикл бина.</mark> `@PostConstruct`, `@PreDestroy`, `InitializingBean` и `BeanPostProcessor`. В чем разница между `BeanFactoryPostProcessor` и `BeanPostProcessor`?
-11. Области видимости (scopes) бинов (`singleton`, `prototype`, `request`, `session` и др.). <mark style="background-color:blue;">Что произойдёт при внедрении</mark> <mark style="background-color:blue;"></mark><mark style="background-color:blue;">`prototype`</mark><mark style="background-color:blue;">-бина в</mark> <mark style="background-color:blue;"></mark><mark style="background-color:blue;">`singleton`</mark><mark style="background-color:blue;">?</mark>
+11. Области видимости (scopes) бинов (`singleton`, `prototype`, `request`, `session` и др.). <mark style="background-color:blue;">Что произойдёт при внедрении</mark> <mark style="background-color:blue;">`prototype`</mark><mark style="background-color:blue;">-бина в</mark> <mark style="background-color:blue;">`singleton`</mark><mark style="background-color:blue;">?</mark>
 12. Использование reflection в Spring. Возможности и ограничения.
 13. Что такое AOP (Aspect-Oriented Programming)? Какие проблемы решает? Основные понятия AOP: Aspect, Advice, Pointcut, Join Point, Target Object.
 14. Реализация AOP в Spring: Proxy (<mark style="background-color:blue;">JDK Dynamic Proxy vs CGLIB</mark>). Ограничения.
 15. AspectJ и его отличия от Spring AOP (weaving, возможности).
 16. JSON сериализация: Jackson, кастомные сериализаторы, аннотации (`@JsonIgnore`, `@JsonProperty`).
-17. <mark style="background-color:blue;">Разница между</mark> <mark style="background-color:blue;"></mark><mark style="background-color:blue;">`@Controller`</mark> <mark style="background-color:blue;"></mark><mark style="background-color:blue;">и</mark> <mark style="background-color:blue;"></mark><mark style="background-color:blue;">`@RestController`</mark><mark style="background-color:blue;">.</mark>
+17. <mark style="background-color:blue;">Разница между</mark> <mark style="background-color:blue;">`@Controller`</mark> <mark style="background-color:blue;">и</mark> <mark style="background-color:blue;">`@RestController`</mark><mark style="background-color:blue;">.</mark>
 18. Аннотации `@RequestMapping`, `@GetMapping`, `@PostMapping`, `@PutMapping`, `@PatchMapping`, `@DeleteMapping`.
 19. Аннотации `@RequestParam`, `@PathVariable`, `@RequestBody`, `@RequestHeader`.
 20. Формирование ответа: `@ResponseBody`, `ResponseEntity`, `@ResponseStatus`
@@ -40,13 +40,13 @@
 34. Аннотации `@Entity`, `@Table`, `@Id`, `@GeneratedValue`, `@Column` (`name`, `nullable`, `length`). Требования к классу сущности.
 35. Связи в JPA: `@OneToOne`, `@OneToMany`, `@ManyToOne`, `@ManyToMany`. `@JoinColumn`, `mappedBy`.
 36. `EntityManager`, Persistence Context, жизненный цикл Entity. Как работает dirty checking?
-37. Стратегии загрузки <mark style="background-color:blue;">`LAZY`</mark> <mark style="background-color:blue;"></mark><mark style="background-color:blue;">и</mark> <mark style="background-color:blue;"></mark><mark style="background-color:blue;">`EAGER`</mark>. `CascadeType` и `orphanRemoval`.
+37. Стратегии загрузки <mark style="background-color:blue;">`LAZY`</mark> <mark style="background-color:blue;">и</mark> <mark style="background-color:blue;">`EAGER`</mark>. `CascadeType` и `orphanRemoval`.
 38. `JpaRepository`: CRUD, derived queries, `@Query`, `nativeQuery`, JPQL/HQL, проекции.
 39. Динамические запросы: Specification API, Criteria API, QueryDSL/jOOQ (базовое представление), сравнение инструментов.
 40. <mark style="background-color:blue;">`@Transactional`</mark>
     1. Как работает в Spring? `TransactionManager`, `PlatformTransactionManager`
-    2. <mark style="background-color:blue;">Self-invocation — почему</mark> <mark style="background-color:blue;"></mark><mark style="background-color:blue;">`@Transactional`</mark> <mark style="background-color:blue;"></mark><mark style="background-color:blue;">не работает при вызове из того же класса? как это обойти?</mark>
-    3. <mark style="background-color:blue;">`propagation`</mark> <mark style="background-color:blue;"></mark><mark style="background-color:blue;">--</mark>
+    2. <mark style="background-color:blue;">Self-invocation — почему</mark> <mark style="background-color:blue;">`@Transactional`</mark> <mark style="background-color:blue;">не работает при вызове из того же класса? как это обойти?</mark>
+    3. <mark style="background-color:blue;">`propagation`</mark> <mark style="background-color:blue;">--</mark>
     4. `isolation`
     5. `readOnly`
     6. <mark style="background-color:blue;">Правила rollback</mark>
@@ -60,7 +60,7 @@
     5. Когда `flush()` может вызываться автоматически?
     6. Порядок SQL-операций при `flush()`.
 42. Аннотации `@PrePersist`, `@PreUpdate`, `@PostLoad` — назначение.
-43. <mark style="background-color:blue;">Проблема N+1. Решения через</mark> <mark style="background-color:blue;"></mark><mark style="background-color:blue;">`@BatchSize`</mark><mark style="background-color:blue;">,</mark> <mark style="background-color:blue;"></mark><mark style="background-color:blue;">`JOIN FETCH`</mark><mark style="background-color:blue;">,</mark> <mark style="background-color:blue;"></mark><mark style="background-color:blue;">`@EntityGraph`</mark><mark style="background-color:blue;">.</mark>
+43. <mark style="background-color:blue;">Проблема N+1. Решения через</mark> <mark style="background-color:blue;">`@BatchSize`</mark><mark style="background-color:blue;">,</mark> <mark style="background-color:blue;">`JOIN FETCH`</mark><mark style="background-color:blue;">,</mark> <mark style="background-color:blue;">`@EntityGraph`</mark><mark style="background-color:blue;">.</mark>
 44. DTO (Data Transfer Object). Почему не рекомендуется использовать Entity в ответах API? `LazyInitializationException` — причины и решения.
 45. MapStruct: Как реализовать преобразование между DTO и Entity.
 46. Auditing: `@CreatedBy`, `@CreatedDate`, `@LastModifiedBy`, `@LastModifiedDate`, автоматическое заполнение с помощью `@EnableJpaAuditing`.
@@ -265,4 +265,8 @@ GET    /api/analytics/products/rates-distribution - распределение �
 
 {% content-ref url="klient-servernaya-arkhitektura-http.md" %}
 [klient-servernaya-arkhitektura-http.md](klient-servernaya-arkhitektura-http.md)
+{% endcontent-ref %}
+
+{% content-ref url="osnovy-spring-ioc-di-biny.md" %}
+[osnovy-spring-ioc-di-biny.md](osnovy-spring-ioc-di-biny.md)
 {% endcontent-ref %}
