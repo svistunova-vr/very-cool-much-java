@@ -34,3 +34,5 @@
   * [Клиент-серверная архитектура, HTTP](spring-hibernate/klient-servernaya-arkhitektura-http.md)
   * [Основы Spring (IoC, DI, бины)](spring-hibernate/osnovy-spring-ioc-di-biny.md)
 * [Микросервисы, Message Brokers, асинхронность](mikroservisy-message-brokers-asinkhronnost.md)
+* [Распределённые системы и архитектурные паттерны](raspredelyonnye-sistemy-i-arkhitekturnye-patterny.md)
+* [Тестирование, инфраструктура](testirovanie-infrastruktura.md)
